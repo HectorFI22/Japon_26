@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Viaje a Japón</title>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Sawarabi Mincho', serif; background-color: #fffaf7; line-height: 1.6; }
+header { width: 95%; max-width: 1200px; margin: 20px auto; background-color: #bc0000; color: white; text-align: center; padding: 30px 20px; font-weight: bold; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+header h1 { font-family: 'Kaushan Script', cursive; font-size: 4rem; color: white; -webkit-text-stroke: 1.5px black; text-stroke: 1.5px black; }
+header p { margin-top: 5px; font-size: 1.3rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+.container { display: flex; width: 95%; max-width: 1200px; margin: 20px auto; gap: 10px; align-items: stretch; }
+nav { width: 25%; background-color: #ffffff; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); padding: 20px; flex-shrink: 0; min-height: 100vh; overflow-y: auto; }
+nav ul { list-style: none; padding: 0; }
+nav li a { display: block; padding: 15px; margin-bottom: 10px; color: #bc0000; font-weight: bold; text-decoration: none; border-radius: 10px; transition: all 0.3s; cursor: pointer; }
+nav li a:hover { background-color: #f2f2f2; }
+nav li a.active { background-color: #f2f2f2; border-left: 5px solid #bc0000; }
+main { flex-grow: 1; background-color: #ffffff; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); padding: 20px; min-height: 100vh; overflow-y: auto; }
+.dia { display: none; }
+.dia.active { display: block; }
+.dia h2 { color: #bc0000; font-size: 1.8rem; margin-bottom: 15px; }
+.section { margin-bottom: 15px; padding: 10px 15px; background-color: #f7f7f7; border-radius: 10px; }
+.section ul { padding-left: 20px; }
+.resumen { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+.resumen th, .resumen td { border: 1px solid #bc0000; padding: 8px; text-align: center; }
+.resumen th { background-color: #bc0000; color: white; }
+.resumen td { background-color: #f7f7f7; }
+.clima { font-size: 1rem; margin-bottom: 10px; }
+@media (max-width: 768px) { .container { flex-direction: column; } nav, main { width: 100%; } }
+</style>
+</head>
+<body>
+
+<header>
+<h1>日本への旅</h1>
+<p>Viaje a Japón</p>
+</header>
+
+<div class="container">
+<nav>
+<ul>
+<li><a data-dia="dia0" class="active">Resumen</a></li>
+<li><a data-dia="dia1">Día 1</a></li>
+<li><a data-dia="dia2">Día 2</a></li>
+<li><a data-dia="dia3">Día 3</a></li>
+<li><a data-dia="dia4">Día 4</a></li>
+<li><a data-dia="dia5">Día 5</a></li>
+<li><a data-dia="dia6">Día 6</a></li>
+<li><a data-dia="dia7">Día 7</a></li>
+<li><a data-dia="dia8">Día 8</a></li>
+<li><a data-dia="dia9">Día 9</a></li>
+<li><a data-dia="dia10">Día 10</a></li>
+<li><a data-dia="dia11">Día 11</a></li>
+<li><a data-dia="dia12">Día 12</a></li>
+<li><a data-dia="dia13">Día 13</a></li>
+<li><a data-dia="dia14">Día 14</a></li>
+<li><a data-dia="dia15">Día 15</a></li>
+<li><a data-dia="dia16">Día 16</a></li>
+<li><a data-dia="dia17">Día 17</a></li>
+<li><a data-dia="dia18">Día 18</a></li>
+<li><a data-dia="dia19">Día 19</a></li>
+</ul>
+</nav>
+
+<main>
+<div class="dia active" id="dia0">
+<h2>Resumen del viaje</h2>
+<table class="resumen">
+<tr><th>Día</th><th>Qué hacer</th><th>Dónde dormir</th></tr>
+<tr><td>16/03</td><td>Llegada a Seúl, descanso</td><td>Seúl (Incheon)</td></tr>
+<tr><td>17/03</td><td>Osaka: Dotonbori, Shinsaibashi</td><td>Osaka</td></tr>
+<tr><td>18/03</td><td>Universal Studios Japan</td><td>Osaka</td></tr>
+<tr><td>19/03</td><td>Nara: Templo Todai-ji / Kioto: Gion, Pontocho</td><td>Kioto</td></tr>
+<tr><td>20/03</td><td>Kioto: Fushimi Inari, Kiyomizu-dera, Kinkaku-ji, Arashiyama</td><td>Kioto</td></tr>
+<tr><td>21/03</td><td>Hiroshima: Parque de la Paz, Museo</td><td>Hiroshima</td></tr>
+<tr><td>22/03</td><td>Miyajima: Santuario Itsukushima</td><td>Hiroshima</td></tr>
+<tr><td>23/03</td><td>Himeji: Castillo / Osaka noche libre</td><td>Osaka</td></tr>
+<tr><td>24/03</td><td>Hakone: Lago Ashi, Museo al aire libre</td><td>Hakone</td></tr>
+<tr><td>25/03</td><td>Tokio: Asakusa, Templo Senso-ji</td><td>Tokio</td></tr>
+<tr><td>26/03</td><td>Tokio: Shibuya, Harajuku, Omotesando</td><td>Tokio</td></tr>
+<tr><td>27/03</td><td>Excursión a Nikko</td><td>Tokio</td></tr>
+<tr><td>28/03</td><td>Tokio: Akihabara, Ueno, Yanaka</td><td>Tokio</td></tr>
+<tr><td>29/03</td><td>Excursión a Kamakura</td><td>Tokio</td></tr>
+<tr><td>30/03</td><td>Tokio: Ginza, Roppongi, Odaiba</td><td>Tokio</td></tr>
+<tr><td>31/03</td><td>Tokio: Shinjuku, compras y parques</td><td>Tokio</td></tr>
+<tr><td>01/04</td><td>Tokio: repetir barrios, Akihabara</td><td>Tokio</td></tr>
+<tr><td>02/04</td><td>Tokio: Odaiba, cena final</td><td>Tokio</td></tr>
+<tr><td>03/04</td><td>Salida de Tokio</td><td>Vuelo de regreso</td></tr>
+</table>
+</div>
+
+<!-- Aquí van los 19 días completos. Por longitud, cada día se repite con la misma estructura: clima, Qué ver, Restaurantes, Hoteles, Transporte. -->
+<!-- Día 1 -->
+<div class="dia" id="dia1">
+<h2>16/03/26 – Llegada a Seúl / Noche de escala</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Seul+Corea+del+Sur" target="_blank">Ver clima en Seúl</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Llegada a Seúl Incheon a las 18:15</li>
+<li>Descansar y preparar vuelo a Osaka</li>
+<li>Cena ligera en aeropuerto o hotel</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Korean Table – comida rápida coreana</li>
+<li>Lotteria – hamburguesas coreanas</li>
+<li>Bistro Incheon – comida internacional</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Grand Hyatt Incheon</li>
+<li>Incheon Airport Transit Hotel</li>
+<li>Best Western Premier Incheon Airport</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul><li>Shuttle aeropuerto-hotel</li></ul></div>
+</div>
+
+<!-- Día 2 -->
+<div class="dia" id="dia2">
+<h2>17/03/26 – Vuelo a Osaka / Dotonbori y Shinsaibashi</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Osaka+Japón" target="_blank">Ver clima en Osaka</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Llegada a Osaka 10:30</li>
+<li>Explorar Dotonbori y Namba, comida callejera</li>
+<li>Shinsaibashi Shopping Arcade</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Mizuno – okonomiyaki</li>
+<li>Kani Doraku – cangrejo</li>
+<li>Ichiran Ramen – ramen</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Sotetsu Fresa Inn Osaka Namba</li>
+<li>Kaneyoshi Ryokan</li>
+<li>Hotel Mystays Shinsaibashi</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Kansai Airport Express “Haruka” → Osaka Station</li>
+<li>Tren local a Namba</li>
+</ul></div>
+</div>
+
+<!-- Día 3 -->
+<div class="dia" id="dia3">
+<h2>18/03/26 – Universal Studios Japan</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Osaka+Japón" target="_blank">Ver clima en Osaka</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Día completo en USJ</li>
+<li>Prioridad: The Wizarding World of Harry Potter, Minions Park, Jurassic Park</li>
+<li>Cena en City Walk Osaka</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Mel’s Drive-In – hamburguesas</li>
+<li>Finnegan’s Bar & Grill</li>
+<li>Hollywood Dream Restaurant</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Universal Port</li>
+<li>The Park Front Hotel at USJ</li>
+<li>Sotetsu Fresa Inn Osaka Namba</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Tren JR hasta Universal-City Station</li>
+</ul></div>
+</div>
+
+<!-- Día 4 -->
+<div class="dia" id="dia4">
+<h2>19/03/26 – Nara y Kioto</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Nara+Japón" target="_blank">Ver clima en Nara</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Templo Todai-ji y Parque de los ciervos en Nara</li>
+<li>Traslado a Kioto</li>
+<li>Paseo por Gion y Pontocho</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Nara Mahoroba Café</li>
+<li>Gion Tanto – cocina tradicional</li>
+<li>Izakaya Pontocho</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Granvia Kyoto</li>
+<li>Ryokan Yachiyo</li>
+<li>Kyoto Century Hotel</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>JR Nara Line / Kyoto Station</li>
+</ul></div>
+</div>
+
+<!-- Día 5 -->
+<div class="dia" id="dia5">
+<h2>20/03/26 – Kioto: Fushimi Inari, Kiyomizu-dera, Kinkaku-ji, Arashiyama</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Kyoto+Japón" target="_blank">Ver clima en Kioto</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Fushimi Inari Taisha</li>
+<li>Kiyomizu-dera</li>
+<li>Kinkaku-ji y Bosque de Bambú de Arashiyama</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Okonomiyaki Katsu</li>
+<li>Yudofu Sagano – tofu tradicional</li>
+<li>Arashiyama Café</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Granvia Kyoto</li>
+<li>Kyoto Royal Hotel & Spa</li>
+<li>Ryokan Gion Hatanaka</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro y autobuses locales de Kioto</li>
+</ul></div>
+</div>
+<!-- Día 6 -->
+<div class="dia" id="dia6">
+<h2>21/03/26 – Kioto → Hiroshima</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Hiroshima+Japón" target="_blank">Ver clima en Hiroshima</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Traslado en Shinkansen desde Kioto (aprox. 2 h)</li>
+<li>Parque Conmemorativo de la Paz</li>
+<li>Museo de la Paz</li>
+<li>Cúpula de la Bomba Atómica</li>
+<li>Calle Hondori para compras y comida</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Okonomi-mura – okonomiyaki típico</li>
+<li>Hassho – ramen local</li>
+<li>Nagata-ya – okonomiyaki y takoyaki</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Park View Hiroshima</li>
+<li>Santiago Guesthouse</li>
+<li>Hiroshima Hana Hostel</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Shinkansen desde Kioto</li>
+</ul></div>
+</div>
+
+<!-- Día 7 -->
+<div class="dia" id="dia7">
+<h2>22/03/26 – Hiroshima → Miyajima → Hiroshima</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Miyajima+Japón" target="_blank">Ver clima en Miyajima</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Ferry Hiroshima → Miyajima</li>
+<li>Santuario Itsukushima y torii flotante</li>
+<li>Senderismo opcional hasta Monte Misen (teleférico)</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Momijiya – okonomiyaki de la isla</li>
+<li>Yakigaki-no-Hayashi – ostras locales</li>
+<li>Kakiya – mariscos</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Park View Hiroshima</li>
+<li>Santiago Guesthouse</li>
+<li>Hiroshima Hana Hostel</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Ferry de ida y vuelta</li>
+</ul></div>
+</div>
+
+<!-- Día 8 -->
+<div class="dia" id="dia8">
+<h2>23/03/26 – Hiroshima → Himeji → Osaka</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Himeji+Japón" target="_blank">Ver clima en Himeji</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Visita al Castillo de Himeji</li>
+<li>Traslado a Osaka</li>
+<li>Noche libre en Osaka</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Engyoan – soba tradicional</li>
+<li>Kokoen Café – comida ligera</li>
+<li>Koshien Ramen – ramen local</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Sotetsu Fresa Inn Osaka Namba</li>
+<li>Kaneyoshi Ryokan</li>
+<li>Hotel Mystays Shinsaibashi</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Shinkansen Hiroshima → Himeji (1 h 15 min)</li>
+<li>Tren Himeji → Osaka (1 h)</li>
+</ul></div>
+</div>
+
+<!-- Día 9 -->
+<div class="dia" id="dia9">
+<h2>24/03/26 – Osaka → Hakone</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Hakone+Japón" target="_blank">Ver clima en Hakone</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Traslado a Hakone (tren + bus, 3–4 h)</li>
+<li>Crucero por Lago Ashi, vistas Monte Fuji</li>
+<li>Museo al aire libre de Hakone</li>
+<li>Onsen del ryokan</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Tamura Ginkatsutei – tofu</li>
+<li>Bakery & Table Hakone</li>
+<li>Itoh Dining by Nobu</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hakone Pax Yoshino</li>
+<li>Onsen Guesthouse Hakuun</li>
+<li>Yamanochaya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Shinkansen + bus local o tren Odakyu</li>
+</ul></div>
+</div>
+
+<!-- Día 10 -->
+<div class="dia" id="dia10">
+<h2>25/03/26 – Hakone → Tokio / Asakusa</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Traslado a Tokio (1.5 h)</li>
+<li>Templo Senso-ji y Nakamise Street</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Daikokuya Tempura</li>
+<li>Asakusa Kagetsudo – melon pan</li>
+<li>Komakata Dozeu – anguila</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Tren Odakyu / Shinkansen / JR Tokaido</li>
+</ul></div>
+</div>
+
+<!-- Día 11 -->
+<div class="dia" id="dia11">
+<h2>26/03/26 – Tokio: Shibuya, Harajuku, Omotesando</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Shibuya: cruce, Shibuya Sky</li>
+<li>Harajuku: Takeshita Street, cafés temáticos</li>
+<li>Omotesando: tiendas de lujo y arquitectura</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Ichiran Ramen Shibuya</li>
+<li>Afuri Harajuku – ramen con yuzu</li>
+<li>Bills Omotesando – brunch y pastelería</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro local (Tokyu, Ginza, JR Yamanote)</li>
+</ul></div>
+</div>
+
+<!-- Día 12 -->
+<div class="dia" id="dia12">
+<h2>27/03/26 – Tokio → Nikko → Tokio</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Nikko+Japón" target="_blank">Ver clima en Nikko</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Excursión a Nikko (1 h 50 min)</li>
+<li>Santuario Toshogu</li>
+<li>Parque Nacional Nikko</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Hippari Dako – soba y tempura</li>
+<li>Kanaya Hotel Bakery</li>
+<li>Yubatei Masudaya – tofu</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>JR Nikko Line / Tobu Nikko Line</li>
+</ul></div>
+</div>
+<!-- Día 13 -->
+<div class="dia" id="dia13">
+<h2>28/03/26 – Tokio: Akihabara, Ueno, Yanaka</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Akihabara: electrónica y cultura otaku</li>
+<li>Ueno Park y Ameyoko Market</li>
+<li>Yanaka (opcional): barrio tradicional y templos</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Akihabara Gachapon Cafe – comida ligera</li>
+<li>Ippudo Ueno – ramen famoso</li>
+<li>Innsyoutei (Ueno) – cocina clásica japonesa</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro y JR Yamanote</li>
+</ul></div>
+</div>
+
+<!-- Día 14 -->
+<div class="dia" id="dia14">
+<h2>29/03/26 – Tokio → Kamakura → Tokio</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Kamakura+Japón" target="_blank">Ver clima en Kamakura</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Excursión a Kamakura (1 h aprox.)</li>
+<li>Gran Buda (Daibutsu)</li>
+<li>Templos Hase-dera y Tsurugaoka Hachimangu</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Komeda’s Coffee – café y pastelería</li>
+<li>Kua Aina – hamburguesas hawaianas</li>
+<li>Hase-dera Café – comida ligera y té verde</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>JR Yokosuka Line → Kamakura</li>
+</ul></div>
+</div>
+
+<!-- Día 15 -->
+<div class="dia" id="dia15">
+<h2>30/03/26 – Tokio: Ginza, Roppongi, Odaiba</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Ginza: compras de lujo, Kabukiza Theatre</li>
+<li>Roppongi Hills: arte moderno, vistas panorámicas</li>
+<li>Odaiba: teamLab Borderless, DiverCity, Rainbow Bridge</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Kyubey Ginza – sushi de alta calidad</li>
+<li>Gonpachi Roppongi – comida japonesa</li>
+<li>Bills Odaiba – brunch y café</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro Tokyo y Yurikamome Line a Odaiba</li>
+</ul></div>
+</div>
+
+<!-- Día 16 -->
+<div class="dia" id="dia16">
+<h2>31/03/26 – Tokio: Shinjuku</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Shinjuku Gyoen – jardín tradicional</li>
+<li>Meiji Jingu Gaien – parque y paseo</li>
+<li>Tarde libre en Shinjuku: compras y ambiente urbano</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Omoide Yokocho – comida callejera</li>
+<li>Nabezo Shinjuku – shabu-shabu</li>
+<li>Torikizoku – yakitori económico</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro y JR local</li>
+</ul></div>
+</div>
+
+<!-- Día 17 -->
+<div class="dia" id="dia17">
+<h2>01/04/26 – Tokio</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Visita opcional: Shibuya, Harajuku, Omotesando</li>
+<li>Akihabara por la tarde si quieres más cultura otaku</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Afuri Harajuku – ramen con yuzu</li>
+<li>Sushi Zanmai – sushi económico</li>
+<li>Bills Omotesando – brunch y café</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro y JR local</li>
+</ul></div>
+</div>
+
+<!-- Día 18 -->
+<div class="dia" id="dia18">
+<h2>02/04/26 – Tokio: Odaiba / Cena final</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Última oportunidad para Odaiba: arte digital y compras</li>
+<li>Cena final con vistas a la bahía (Aqua City Odaiba o Seaside Park)</li>
+</ul></div>
+<div class="section"><h3>Restaurantes</h3>
+<ul>
+<li>Bills Odaiba</li>
+<li>Gonpachi Odaiba</li>
+<li>The Oven – comida italiana y japonesa</li>
+</ul></div>
+<div class="section"><h3>Hoteles</h3>
+<ul>
+<li>Hotel Mystays Asakusa</li>
+<li>Capsule Hotel Anshin Oyado</li>
+<li>Ryokan Sawanoya</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Metro y JR local</li>
+</ul></div>
+</div>
+
+<!-- Día 19 -->
+<div class="dia" id="dia19">
+<h2>03/04/26 – Salida de Tokio</h2>
+<div class="section clima"><a href="https://www.weather.com/weather/today/l/Tokio+Japón" target="_blank">Ver clima en Tokio</a></div>
+<div class="section"><h3>Qué hacer</h3>
+<ul>
+<li>Traslado al aeropuerto Narita/Haneda</li>
+<li>Vuelo Tokio → Seúl → Madrid</li>
+</ul></div>
+<div class="section"><h3>Transporte</h3>
+<ul>
+<li>Shuttle o tren desde hotel hasta aeropuerto</li>
+</ul></div>
+</div>
+
+<script>
+const links = document.querySelectorAll('nav li a');
+const dias = document.querySelectorAll('.dia');
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    const diaId = link.getAttribute('data-dia');
+    dias.forEach(d => d.classList.remove('active'));
+    document.getElementById(diaId).classList.add('active');
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+</script>
+
+</main>
+</div>
+</body>
+</html>
