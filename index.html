@@ -269,36 +269,45 @@ tbody tr:last-child td:first-child {
     border-bottom-left-radius: 15px;
 }
 tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
-}
-
-/* =========================
-   Ajustes para @media (max-width: 600px) {
+    border-bottom-right-radius: @media (max-width: 600px) {
 
     header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 65px;           /* altura fija del header */
+        height: 65px;
         z-index: 120;
+        background: #fff; /* asegúrate de que el header sea visible */
+    }
+
+    /* Botón hamburguesa */
+    #menuToggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        z-index: 130; /* encima de panel izquierdo */
+        cursor: pointer;
     }
 
     .main-container {
         position: relative;
-        padding-top: 65px;      /* deja hueco debajo del header */
+        padding-top: 65px;          /* hueco debajo del header */
         height: calc(100vh - 65px);
     }
 
+    /* Panel derecho siempre al 100% */
     .panel-right {
         width: 100%;
         height: 100%;
         overflow-y: auto;
     }
 
+    /* Panel izquierdo que se desliza */
     .panel-left {
         position: absolute;
-        top: 65px;              /* empieza justo debajo del header */
+        top: 65px;                  /* empieza debajo del header */
         left: 0;
         height: calc(100vh - 65px);
         width: 70%;
@@ -307,7 +316,7 @@ tbody tr:last-child td:last-child {
         overflow-y: auto;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
-        z-index: 110;
+        z-index: 110;               /* por encima del derecho */
         box-shadow: 3px 0 10px rgba(0,0,0,0.4);
     }
 
