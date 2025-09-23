@@ -285,11 +285,21 @@ tbody tr:last-child td:last-child {
         display: block;
     }
 
+  @media (max-width: 600px) {
+    td, th {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+
+    #menuToggle {
+        display: block;
+    }
+
     /* Panel izquierdo */
-  .panel-left {
+    .panel-left {
         position: relative; /* ya no fijo */
-        top: 0;             /* eliminar top */
-        bottom: 0;          /* eliminar bottom */
+        top: 0;
+        bottom: 0;
         width: 60%;
         max-width: 250px;
         transform: translateX(-110%);
@@ -307,7 +317,7 @@ tbody tr:last-child td:last-child {
 
     .panel-right {
         width: 100%;
-        height: auto; /* se ajusta automáticamente al contenido */
+        height: auto;
         overflow-y: auto;
         transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -316,7 +326,12 @@ tbody tr:last-child td:last-child {
         margin-left: 60%;
         width: 40%;
     }
+
+    .main-container {
+        flex-direction: row; /* paneles lado a lado como escritorio */
+    }
 }
+
 
     /* Ajuste dinámico cuando el menú está abierto */
     .panel-left.open ~ .panel-right {
@@ -677,6 +692,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
