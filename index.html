@@ -238,6 +238,51 @@ tbody tr:nth-child(even) {
 .dark tbody tr:nth-child(even) {
     background-color: #374151;
 }
+/* Tabla responsive */
+table {
+    width: 100%; /* ocupa todo el ancho del panel */
+    max-width: 100%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    table-layout: auto;
+}
+
+thead tr th:first-child {
+    border-top-left-radius: 15px;
+}
+thead tr th:last-child {
+    border-top-right-radius: 15px;
+}
+
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+/* Ajustes de celdas */
+td, th {
+    padding: 8px;
+    word-break: break-word;
+    text-align: center;
+}
+
+/* Evitar scroll horizontal en panel derecho */
+.panel-right {
+    overflow-x: hidden;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    td, th {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+}    
 </style>
 </head>
 <body>
@@ -574,6 +619,7 @@ setInterval(actualizarContador, 1000 * 60 * 60);
 </script>
 </body>
 </html>
+
 
 
 
