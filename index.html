@@ -269,7 +269,7 @@ tbody tr:last-child td:first-child {
     border-bottom-left-radius: 15px;
 }
 tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 
+    border-bottom-right-radius: 15px;
    @media (max-width: 600px) {
 
     header {
@@ -279,54 +279,54 @@ tbody tr:last-child td:last-child {
         width: 100%;
         height: 65px;
         z-index: 120;
-        background: #fff; /* asegúrate de que el header sea visible */
+        background: #fff;
     }
 
-    /* Botón hamburguesa */
     #menuToggle {
         display: block;
         position: absolute;
         top: 15px;
         left: 15px;
-        z-index: 130; /* encima de panel izquierdo */
+        z-index: 130;
         cursor: pointer;
     }
 
     .main-container {
-        position: relative;
-        padding-top: 65px;          /* hueco debajo del header */
+        display: flex;
+        flex-direction: row;
+        padding-top: 65px; /* deja hueco para el header */
         height: calc(100vh - 65px);
+        width: 100%;
+        overflow: hidden;
     }
 
-    /* Panel derecho siempre al 100% */
+    /* Panel izquierdo: oculto por defecto */
+    .panel-left {
+        width: 0;
+        overflow: hidden;
+        transition: width 0.3s ease;
+        background: #fff;
+        height: 100%;
+    }
+
+    /* Panel derecho: ocupa todo si el menú está cerrado */
     .panel-right {
         width: 100%;
         height: 100%;
+        transition: width 0.3s ease;
         overflow-y: auto;
     }
 
-    /* Panel izquierdo que se desliza */
-    .panel-left {
-        position: absolute;
-        top: 65px;                  /* empieza debajo del header */
-        left: 0;
-        height: calc(100vh - 65px);
-        width: 70%;
-        max-width: 250px;
-        background: white;
-        overflow-y: auto;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: 110;               /* por encima del derecho */
-        box-shadow: 3px 0 10px rgba(0,0,0,0.4);
+    /* Cuando se abre el menú */
+    .main-container.menu-open .panel-left {
+        width: 35%; /* ancho del panel izquierdo */
     }
 
-    .panel-left.open {
-        transform: translateX(0);
+    .main-container.menu-open .panel-right {
+        width: 65%; /* el resto para el panel derecho */
     }
 }
-
-
+ 
 </style>
 </head>
 <body>
@@ -672,6 +672,14 @@ const panelLeft = document.querySelector(".panel-left");
 menuToggle.addEventListener("click", () => {
     panelLeft.classList.toggle("open");
 });
+</script>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const container = document.querySelector('.main-container');
+
+  toggle.addEventListener('click', () => {
+    container.classList.toggle('menu-open');
+  });
 </script>
 </body>
 </html>
