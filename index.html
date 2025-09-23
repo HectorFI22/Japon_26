@@ -270,7 +270,8 @@ tbody tr:last-child td:first-child {
 }
 tbody tr:last-child td:last-child {
     border-bottom-right-radius: 15px;
-   @media (max-width: 600px) {
+ 
+@media (max-width: 600px) {
 
     header {
         position: fixed;
@@ -309,7 +310,7 @@ tbody tr:last-child td:last-child {
         height: 100%;
     }
 
-    /* Panel derecho: ocupa todo si el menú está cerrado */
+    /* Panel derecho ocupa todo por defecto */
     .panel-right {
         width: 100%;
         height: 100%;
@@ -319,11 +320,11 @@ tbody tr:last-child td:last-child {
 
     /* Cuando se abre el menú */
     .main-container.menu-open .panel-left {
-        width: 35%; /* ancho del panel izquierdo */
+        width: 35%; /* ancho panel izquierdo */
     }
 
     .main-container.menu-open .panel-right {
-        width: 65%; /* el resto para el panel derecho */
+        width: 65%; /* ancho panel derecho */
     }
 }
  
@@ -676,6 +677,9 @@ menuToggle.addEventListener("click", () => {
 <script>
   const toggle = document.getElementById('menuToggle');
   const container = document.querySelector('.main-container');
+
+  // Aseguramos que al cargar la página el menú esté cerrado
+  container.classList.remove('menu-open');
 
   toggle.addEventListener('click', () => {
     container.classList.toggle('menu-open');
