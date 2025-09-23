@@ -288,12 +288,12 @@ tbody tr:last-child td:last-child {
     /* Panel izquierdo deslizante */
     .panel-left {
         position: fixed;
-        top: 65px; /* justo debajo del header */
+        top: 65px; /* altura del header */
         left: 0;
         height: calc(100vh - 65px);
-        width: 60%;
+        width: 70%; /* ancho del menú */
         max-width: 250px;
-        transform: translateX(-100%); /* oculto inicialmente */
+        transform: translateX(-100%);
         background-color: white;
         box-shadow: 3px 0 10px rgba(0,0,0,0.4);
         z-index: 100;
@@ -303,18 +303,19 @@ tbody tr:last-child td:last-child {
     }
 
     .panel-left.open {
-        transform: translateX(0); /* aparece sobre el derecho */
+        transform: translateX(0); /* desliza sobre el derecho */
     }
 
-    /* Panel derecho ocupa siempre todo el ancho */
+    /* Panel derecho ocupa todo el ancho */
     .panel-right {
         width: 100%;
         height: calc(100vh - 65px);
         overflow-y: auto;
     }
 
+    /* Contenedor deja de ser flex en móvil */
     .main-container {
-        flex-direction: row;
+        display: block;
     }
 }
 
@@ -678,6 +679,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
