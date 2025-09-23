@@ -276,58 +276,52 @@ tbody tr:last-child td:last-child {
    Ajustes para móviles
    ========================= */
 @media (max-width: 600px) {
+
     #menuToggle {
         display: block;
-        z-index: 110;
+        z-index: 120; /* por encima del panel izquierdo */
     }
 
     .main-container {
-        display: flex;
-        flex-direction: column; /* apilamos paneles en móvil */
-        gap: 0;
-        height: calc(100vh - 65px);
+        display: block;
+        position: relative;
+        height: calc(100vh - 65px); /* altura disponible debajo del header */
     }
 
-    .panel-left {
-        width: 100%;
-        max-height: 0;       /* oculto inicialmente */
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        box-shadow: none;    /* para que no tape */
-        border-radius: 0;
-        background-color: white;
-    }
-
-    .panel-left.open {
-        max-height: 100%;    /* se expande a la altura total disponible */
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        border-radius: 15px;
-    }
-
+    /* Panel derecho siempre al 100% */
     .panel-right {
         width: 100%;
-        flex: 1; /* ocupa el resto del espacio */
+        height: 100%;
         overflow-y: auto;
     }
 
+    /* Panel izquierdo que pasa por encima, pero alineado en altura */
+    .panel-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;          /* coincide con panel derecho */
+        width: 70%;
+        max-width: 250px;
+        background-color: white;
+        overflow-y: auto;
+        transform: translateX(-100%); /* oculto inicialmente */
+        transition: transform 0.3s ease;
+        z-index: 110;           /* encima del panel derecho, debajo del header */
+        box-shadow: 3px 0 10px rgba(0,0,0,0.4);
+    }
+
+    .panel-left.open {
+        transform: translateX(0); /* aparece */
+    }
+
+    /* Header siempre visible */
     header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         z-index: 120;
-    }
-}
-
-
-    /* Ajuste dinámico cuando el menú está abierto */
-    .panel-left.open ~ .panel-right {
-        margin-left: 60%; /* coincide con ancho del panel izquierdo */
-        width: 40%;
-    }
-
-    .main-container {
-        flex-direction: row; /* paneles lado a lado como escritorio */
     }
 }
 
@@ -679,6 +673,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
