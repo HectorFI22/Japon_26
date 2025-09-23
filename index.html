@@ -8,13 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viaje a Japón 2026</title>
 <style>
-/* =========================
-   Estilos generales
-   ========================= */
-
 /* Transiciones suaves */
 * {
     transition: background-color 0.01s, color 0.01s;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -22,12 +19,13 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: sans-serif;
-    overflow: hidden; /* scroll solo en paneles */
 }
 
 body {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* Encabezado */
@@ -35,14 +33,13 @@ header {
     background-color: #bc0000;
     color: white;
     text-align: center;
-    padding: 5px 15px;
+    padding: 10px 15px;
     font-weight: bold;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     position: relative;
     flex-shrink: 0;
     margin: 10px;
-    z-index: 50;
 }
 
 .header-jp {
@@ -64,7 +61,7 @@ header {
     border: none;
     background: transparent;
     cursor: pointer;
-    z-index: 60;
+    z-index: 10;
 }
 
 #toggleDark {
@@ -92,49 +89,36 @@ header {
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     padding: 15px;
     overflow-y: auto;
-    position: relative;
+    height: calc(100vh - 80px); /* altura menos header + margen */
 }
 
 /* Scroll personalizado */
 .panel::-webkit-scrollbar {
     width: 10px;
 }
-
 .panel::-webkit-scrollbar-track {
     background: #f0f0f0;
     border-radius: 10px;
 }
-
 .panel::-webkit-scrollbar-thumb {
     background-color: #bc0000;
     border-radius: 10px;
     border: 2px solid #f0f0f0;
 }
 
-.dark .panel::-webkit-scrollbar-track {
-    background: #2d3748;
-}
-
-.dark .panel::-webkit-scrollbar-thumb {
-    background-color: #ff4d4d;
-    border: 2px solid #2d3748;
-}
-
 /* Panel izquierdo */
 .panel-left {
-    width: 25%;
+    flex: 0 0 25%;  /* AJUSTE: 25% */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, width 0.3s ease, margin-left 0.3s ease;
+    transition: transform 0.3s ease, width 0.3s ease;
     z-index: 20;
 }
 
 /* Panel derecho */
 .panel-right {
-    width: 75%;
-    transition: margin-left 0.3s ease, width 0.3s ease;
-    overflow-x: hidden;
+    flex: 1 0 75%;  /* AJUSTE: 75% */
 }
 
 /* Menú */
@@ -217,16 +201,13 @@ header {
     background-color: #bc0000;
 }
 
-/* Tabla resumen estilo moderno */
+/* Tabla resumen */
 table {
     width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    table-layout: auto;
 }
 
 thead tr {
@@ -237,7 +218,6 @@ thead tr {
 
 td, th {
     padding: 8px;
-    word-break: break-word;
     text-align: center;
 }
 
@@ -258,6 +238,7 @@ tbody tr:nth-child(even) {
     background-color: #374151;
 }
 
+/* Bordes redondeados tabla */
 thead tr th:first-child {
     border-top-left-radius: 15px;
 }
@@ -272,55 +253,45 @@ tbody tr:last-child td:last-child {
     border-bottom-right-radius: 15px;
 }
 
-/* =========================
-   Ajustes para móviles
-   ========================= */
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 600px) {
-    td, th {
-        padding: 6px;
-        font-size: 0.8rem;
-    }
-
     #menuToggle {
         display: block;
     }
 
-    /* Panel izquierdo */
+    .main-container {
+        flex-direction: row;
+        height: calc(100vh - 80px);
+    }
+
     .panel-left {
         position: fixed;
-        top: 65px; /* altura del header */
+        top: 10px; /* margen del header */
         left: 0;
-        height: calc(100% - 65px);
-        width: 60%;
+        height: calc(100vh - 80px);
+        width: 40%;
         max-width: 250px;
         transform: translateX(-110%);
         background-color: white;
         box-shadow: 3px 0 10px rgba(0,0,0,0.4);
-        z-index: 100;
-        overflow-y: auto;
         padding: 15px;
+        overflow-y: auto;
+        z-index: 100;
     }
 
     .panel-left.open {
         transform: translateX(0);
     }
 
-    /* Panel derecho */
     .panel-right {
-        width: 100%;
+        flex: 1;
+        transition: margin-left 0.3s ease;
     }
 
-    /* Ajuste dinámico cuando el menú está abierto */
-    .panel-left.open ~ .panel-right {
-        margin-left: 60%; /* coincide con ancho del panel izquierdo */
-        width: 40%;
-    }
-
-    .main-container {
-        flex-direction: row; /* paneles lado a lado como escritorio */
+    .panel-right.shifted {
+        margin-left: 40%;
     }
 }
-
 </style>
 </head>
 <body>
@@ -333,7 +304,7 @@ tbody tr:last-child td:last-child {
 <div class="main-container">
     <aside class="panel panel-left">
         <ul id="menuDias">
-            <li><a data-dia="resumen" class="active">Resumen</a></li>
+<li><a data-dia="resumen" class="active">Resumen</a></li>
             <li><a data-dia="dia1">Día 1 - 16/03</a></li>
             <li><a data-dia="dia2">Día 2 - 17/03</a></li>
             <li><a data-dia="dia3">Día 3 - 18/03</a></li>
@@ -356,21 +327,15 @@ tbody tr:last-child td:last-child {
         <div id="contador"></div>
     </aside>
     <section class="panel panel-right">
- <!-- Pestaña Resumen -->
         <div id="resumen" class="dia active">
             <div class="seccion">
-                <h3>Resumen del viaje y alojamiento</h3>
+                <h3>Resumen del viaje</h3>
                 <table>
                     <thead>
-                        <tr>
-                            <th>Día</th>
-                            <th>Visitas</th>
-                            <th>Dormir</th>
-                        </tr>
+                        <tr><th>Día</th><th>Visitas</th><th>Dormir</th></tr>
                     </thead>
                     <tbody>
-    <tr><td>1</td><td>Llegada a Korea</td><td>Airport Hotel</td></tr>
-    <tr><td>2</td><td>Osaka Inicial</td><td>Osaka</td></tr>
+                        <td>2</td><td>Osaka Inicial</td><td>Osaka</td></tr>
     <tr><td>3</td><td>Osaka Tradicional</td><td>Osaka</td></tr>
     <tr><td>4</td><td>Universal Studios</td><td>Osaka</td></tr>
     <tr><td>5</td><td>Excursión a Nara</td><td>Osaka</td></tr>
@@ -387,7 +352,7 @@ tbody tr:last-child td:last-child {
     <tr><td>16</td><td>Tokyo Moderno</td><td>Tokyo</td></tr>
     <tr><td>17</td><td>Monte Fuji</td><td>Tokyo</td></tr>
     <tr><td>18</td><td>Excursión a Nikko y regreso</td><td>—</td></tr>
-</tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -610,19 +575,18 @@ tbody tr:last-child td:last-child {
         <p><strong>Alojamiento:</strong> —</p>
     </div>
 </div>
-
-    </section>
+            </section>
 </div>
 
 <script>
-// Toggle modo oscuro con cambio de emoji
+// Toggle modo oscuro
 const toggle = document.getElementById("toggleDark");
 toggle.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
     toggle.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
 });
 
-// Modo oscuro automático según hora
+// Modo oscuro automático
 const hora = new Date().getHours();
 if(hora >= 20 || hora < 7){
     document.documentElement.classList.add("dark");
@@ -642,14 +606,15 @@ links.forEach(link => {
         links.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
-        // Cierra el menú al seleccionar un día en móvil
+        // Cierra el menú en móvil
         if(window.innerWidth <= 600){
             document.querySelector('.panel-left').classList.remove('open');
+            document.querySelector('.panel-right').classList.remove('shifted');
         }
     });
 });
 
-// Contador de días faltantes
+// Contador días
 const fechaViaje = new Date('2026-03-16');
 function actualizarContador() {
     const hoy = new Date();
@@ -663,12 +628,15 @@ setInterval(actualizarContador, 1000 * 60 * 60);
 // Toggle menú hamburguesa
 const menuToggle = document.getElementById("menuToggle");
 const panelLeft = document.querySelector(".panel-left");
+const panelRight = document.querySelector(".panel-right");
 menuToggle.addEventListener("click", () => {
     panelLeft.classList.toggle("open");
+    panelRight.classList.toggle("shifted");
 });
 </script>
 </body>
 </html>
+
 
 
 
