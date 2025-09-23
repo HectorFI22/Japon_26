@@ -8,7 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viaje a Japón 2026</title>
 <style>
-/* Transiciones suaves para modo oscuro y cambios de color */
+/* =========================
+   Estilos generales
+   ========================= */
+
+/* Transiciones suaves */
 * {
     transition: background-color 0.01s, color 0.01s;
 }
@@ -38,6 +42,7 @@ header {
     position: relative;
     flex-shrink: 0;
     margin: 10px;
+    z-index: 50;
 }
 
 .header-jp {
@@ -59,7 +64,7 @@ header {
     border: none;
     background: transparent;
     cursor: pointer;
-    z-index: 10;
+    z-index: 60;
 }
 
 #toggleDark {
@@ -68,7 +73,7 @@ header {
 
 #menuToggle {
     left: 20px;
-    display: none; /* solo visible en móviles */
+    display: none;
 }
 
 /* Contenedor principal */
@@ -121,12 +126,15 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, width 0.3s ease, margin-left 0.3s ease;
     z-index: 20;
 }
 
+/* Panel derecho */
 .panel-right {
     width: 75%;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    overflow-x: hidden;
 }
 
 /* Menú */
@@ -211,12 +219,14 @@ header {
 
 /* Tabla resumen estilo moderno */
 table {
-    width: 60%;
-    margin: 0 auto; 
-    border-collapse: collapse;
-    border-radius: 12px;
-    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    table-layout: auto;
 }
 
 thead tr {
@@ -226,8 +236,8 @@ thead tr {
 }
 
 td, th {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    word-break: break-word;
     text-align: center;
 }
 
@@ -248,18 +258,6 @@ tbody tr:nth-child(even) {
     background-color: #374151;
 }
 
-/* Tabla responsive */
-table {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    table-layout: auto;
-}
-
 thead tr th:first-child {
     border-top-left-radius: 15px;
 }
@@ -274,19 +272,9 @@ tbody tr:last-child td:last-child {
     border-bottom-right-radius: 15px;
 }
 
-/* Ajustes de celdas */
-td, th {
-    padding: 8px;
-    word-break: break-word;
-    text-align: center;
-}
-
-/* Evitar scroll horizontal en panel derecho */
-.panel-right {
-    overflow-x: hidden;
-}
-
-/* Ajustes para pantallas pequeñas */
+/* =========================
+   Ajustes para móviles
+   ========================= */
 @media (max-width: 600px) {
     td, th {
         padding: 6px;
@@ -297,13 +285,14 @@ td, th {
         display: block;
     }
 
+    /* Panel izquierdo */
     .panel-left {
         position: fixed;
-        top: 0;
+        top: 65px; /* altura del header */
         left: 0;
-        height: 100%;
-        width: 70%;
-        max-width: 300px;
+        height: calc(100% - 65px);
+        width: 60%;
+        max-width: 250px;
         transform: translateX(-110%);
         background-color: white;
         box-shadow: 3px 0 10px rgba(0,0,0,0.4);
@@ -316,14 +305,22 @@ td, th {
         transform: translateX(0);
     }
 
-    .main-container {
-        flex-direction: column;
-    }
-
+    /* Panel derecho */
     .panel-right {
         width: 100%;
     }
+
+    /* Ajuste dinámico cuando el menú está abierto */
+    .panel-left.open ~ .panel-right {
+        margin-left: 60%; /* coincide con ancho del panel izquierdo */
+        width: 40%;
+    }
+
+    .main-container {
+        flex-direction: row; /* paneles lado a lado como escritorio */
+    }
 }
+
 </style>
 </head>
 <body>
@@ -672,6 +669,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
