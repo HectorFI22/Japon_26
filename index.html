@@ -8,6 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viaje a Japón 2026</title>
 <style>
+/* Transiciones suaves para modo oscuro y cambios de color */
+* {
+    transition: background-color 0.1s, color 0.1s;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -197,7 +202,7 @@ header {
 
 /* Tabla resumen estilo moderno */
 table {
-    width: 60%;
+    width: 90%;
 margin: 0 auto; 
     border-collapse: collapse;
     border-radius: 12px;
@@ -275,8 +280,8 @@ tbody tr:nth-child(even) {
                     <thead>
                         <tr>
                             <th>Día</th>
-                            <th>Visitas</th>
-                            <th>Dormir</th>
+                            <th>Visitas principales</th>
+                            <th>Alojamiento</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -569,6 +574,8 @@ setInterval(actualizarContador, 1000 * 60 * 60);
 </script>
 </body>
 </html>
+
+
 
 
 
