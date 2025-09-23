@@ -285,11 +285,12 @@ tbody tr:last-child td:last-child {
         display: block;
     }
 
+    /* Panel izquierdo deslizante */
     .panel-left {
         position: fixed;
         top: 65px; /* justo debajo del header */
         left: 0;
-        height: calc(100% - 65px); /* desde abajo del header hasta el final */
+        height: calc(100vh - 65px);
         width: 60%;
         max-width: 250px;
         transform: translateX(-100%); /* oculto inicialmente */
@@ -302,19 +303,14 @@ tbody tr:last-child td:last-child {
     }
 
     .panel-left.open {
-        transform: translateX(0);
+        transform: translateX(0); /* aparece sobre el derecho */
     }
 
+    /* Panel derecho ocupa siempre todo el ancho */
     .panel-right {
         width: 100%;
-        height: calc(100vh - 65px); /* altura exacta del panel izquierdo */
+        height: calc(100vh - 65px);
         overflow-y: auto;
-        transition: margin-left 0.3s ease, width 0.3s ease;
-    }
-
-    .panel-left.open ~ .panel-right {
-        margin-left: 60%;
-        width: 40%;
     }
 
     .main-container {
@@ -682,6 +678,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
