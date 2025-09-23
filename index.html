@@ -287,19 +287,23 @@ tbody tr:last-child td:last-child {
 
     /* Panel izquierdo */
     .panel-left {
-        position: fixed;
-        top: 65px; /* altura del header */
-        left: 0;
-        height: calc(100% - 65px);
-        width: 60%;
-        max-width: 250px;
-        transform: translateX(-110%);
-        background-color: white;
-        box-shadow: 3px 0 10px rgba(0,0,0,0.4);
-        z-index: 100;
-        overflow-y: auto;
-        padding: 15px;
-    }
+         position: fixed;
+    top: 65px; /* altura del header */
+    bottom: 0; /* asegurar que termine al mismo nivel que el derecho */
+    left: 0;
+    width: 60%;
+    max-width: 250px;
+    transform: translateX(-110%);
+    background-color: white;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.4);
+    z-index: 100;
+    overflow-y: auto;
+    padding: 15px;
+}
+   .panel-right {
+    height: calc(100% - 65px); /* misma altura que el panel izquierdo */
+    overflow-y: auto;
+}
 
     .panel-left.open {
         transform: translateX(0);
@@ -669,6 +673,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
