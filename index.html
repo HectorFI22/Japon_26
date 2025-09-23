@@ -283,17 +283,18 @@ tbody tr:last-child td:last-child {
 
     #menuToggle {
         display: block;
+        z-index: 110; /* por encima del panel izquierdo */
     }
 
     /* Panel izquierdo deslizante */
     .panel-left {
         position: fixed;
-        top: 65px; /* altura del header */
+        top: 65px; /* justo debajo del header */
         left: 0;
         height: calc(100vh - 65px);
-        width: 70%; /* ancho del menú */
+        width: 70%;
         max-width: 250px;
-        transform: translateX(-100%);
+        transform: translateX(-100%); /* oculto inicialmente */
         background-color: white;
         box-shadow: 3px 0 10px rgba(0,0,0,0.4);
         z-index: 100;
@@ -303,22 +304,30 @@ tbody tr:last-child td:last-child {
     }
 
     .panel-left.open {
-        transform: translateX(0); /* desliza sobre el derecho */
+        transform: translateX(0); /* aparece sobre el panel derecho */
     }
 
-    /* Panel derecho ocupa todo el ancho */
+    /* Panel derecho ocupa todo el ancho y misma altura que izquierdo */
     .panel-right {
         width: 100%;
         height: calc(100vh - 65px);
         overflow-y: auto;
     }
 
-    /* Contenedor deja de ser flex en móvil */
+    /* Contenedor principal deja de ser flex para móvil */
     .main-container {
         display: block;
     }
-}
 
+    /* Header siempre por encima */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 120;
+    }
+}
 
     /* Ajuste dinámico cuando el menú está abierto */
     .panel-left.open ~ .panel-right {
@@ -679,6 +688,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
