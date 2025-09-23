@@ -273,57 +273,49 @@ tbody tr:last-child td:last-child {
 }
 
 /* =========================
-   Ajustes para móviles
-   ========================= */
-@media (max-width: 600px) {
+   Ajustes para @media (max-width: 600px) {
 
-    #menuToggle {
-        display: block;
-        z-index: 120; /* por encima del panel izquierdo */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;           /* altura fija del header */
+        z-index: 120;
     }
 
     .main-container {
-        display: block;
         position: relative;
-        height: calc(100vh - 65px); /* altura disponible debajo del header */
+        padding-top: 65px;      /* deja hueco debajo del header */
+        height: calc(100vh - 65px);
     }
 
-    /* Panel derecho siempre al 100% */
     .panel-right {
         width: 100%;
         height: 100%;
         overflow-y: auto;
     }
 
-    /* Panel izquierdo que pasa por encima, pero alineado en altura */
     .panel-left {
         position: absolute;
-        top: 0;
+        top: 65px;              /* empieza justo debajo del header */
         left: 0;
-        height: 100%;          /* coincide con panel derecho */
+        height: calc(100vh - 65px);
         width: 70%;
         max-width: 250px;
-        background-color: white;
+        background: white;
         overflow-y: auto;
-        transform: translateX(-100%); /* oculto inicialmente */
+        transform: translateX(-100%);
         transition: transform 0.3s ease;
-        z-index: 110;           /* encima del panel derecho, debajo del header */
+        z-index: 110;
         box-shadow: 3px 0 10px rgba(0,0,0,0.4);
     }
 
     .panel-left.open {
-        transform: translateX(0); /* aparece */
-    }
-
-    /* Header siempre visible */
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 120;
+        transform: translateX(0);
     }
 }
+
 
 </style>
 </head>
