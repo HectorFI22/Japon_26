@@ -8,40 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viaje a Japón 2026</title>
 <style>
-.tabla-resumen {
-    width: 90%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    font-size: 0.8rem;
-}
-
-.tabla-resumen th, .tabla-resumen td {
-    padding: 10px;
-    text-align: left;
-}
-
-.tabla-resumen thead th {
-    background-color: #bc0000;
-    color: white;
-}
-
-.tabla-resumen tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.dark .tabla-resumen tbody tr:nth-child(even) {
-    background-color: #374151;
-}
-
-.tabla-resumen tbody tr:hover {
-    background-color: #f2f2f2;
-}
-
-.dark .tabla-resumen tbody tr:hover {
-    background-color: #4b5563;
+/* Transiciones suaves para modo oscuro y cambios de color */
+* {
+    transition: background-color 0.3s, color 0.3s;
 }
 
 html, body {
@@ -82,17 +51,16 @@ header {
     font-weight: bold;
 }
 
-/* Botón modo oscuro */
+/* Botón modo oscuro estilo emoji */
 #toggleDark {
     position: absolute;
     top: 10px;
     right: 20px;
     z-index: 10;
-    padding: 5px 10px;
-    border-radius: 8px;
-    background-color: white;
-    color: #bc0000;
-    font-weight: bold;
+    padding: 5px;
+    font-size: 1.2rem;
+    border: none;
+    background: transparent;
     cursor: pointer;
 }
 
@@ -231,430 +199,353 @@ header {
 .dark header {
     background-color: #bc0000;
 }
+
+/* Tabla resumen estilo moderno */
+table {
+    width: 90%;
+margin: 0 auto; 
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+thead tr {
+    background-color: #bc0000;
+    color: white;
+    text-align: center;
+}
+
+td, th {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.dark table {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.dark thead tr {
+    background-color: #ff4d4d;
+}
+
+.dark tbody tr:nth-child(even) {
+    background-color: #374151;
+}
 </style>
 </head>
 <body>
 <header>
     <h1 class="header-jp">日本への旅行</h1>
     <p class="header-title">Viaje a Japón</p>
-    <button id="toggleDark">Modo oscuro</button>
+    <button id="toggleDark">🌙</button>
 </header>
 <div class="main-container">
     <aside class="panel panel-left">
- <ul id="menuDias">
+        <ul id="menuDias">
             <li><a data-dia="resumen" class="active">Resumen</a></li>
-            <li><a data-dia="dia1">Día 1</a></li>
-            <li><a data-dia="dia2">Día 2</a></li>
-            <li><a data-dia="dia3">Día 3</a></li>
-            <li><a data-dia="dia4">Día 4</a></li>
-            <li><a data-dia="dia5">Día 5</a></li>
-            <li><a data-dia="dia6">Día 6</a></li>
-            <li><a data-dia="dia7">Día 7</a></li>
-            <li><a data-dia="dia8">Día 8</a></li>
-            <li><a data-dia="dia9">Día 9</a></li>
-            <li><a data-dia="dia10">Día 10</a></li>
-            <li><a data-dia="dia11">Día 11</a></li>
-            <li><a data-dia="dia12">Día 12</a></li>
-            <li><a data-dia="dia13">Día 13</a></li>
-            <li><a data-dia="dia14">Día 14</a></li>
-            <li><a data-dia="dia15">Día 15</a></li>
-            <li><a data-dia="dia16">Día 16</a></li>
-            <li><a data-dia="dia17">Día 17</a></li>
-            <li><a data-dia="dia18">Día 18</a></li>
+            <li><a data-dia="dia1">Día 1 - 16/03</a></li>
+            <li><a data-dia="dia2">Día 2 - 17/03</a></li>
+            <li><a data-dia="dia3">Día 3 - 18/03</a></li>
+            <li><a data-dia="dia4">Día 4 - 19/03</a></li>
+            <li><a data-dia="dia5">Día 5 - 20/03</a></li>
+            <li><a data-dia="dia6">Día 6 - 21/03</a></li>
+            <li><a data-dia="dia7">Día 7 - 22/03</a></li>
+            <li><a data-dia="dia8">Día 8 - 23/03</a></li>
+            <li><a data-dia="dia9">Día 9 - 24/03</a></li>
+            <li><a data-dia="dia10">Día 10 - 25/03</a></li>
+            <li><a data-dia="dia11">Día 11 - 26/03</a></li>
+            <li><a data-dia="dia12">Día 12 - 27/03</a></li>
+            <li><a data-dia="dia13">Día 13 - 28/03</a></li>
+            <li><a data-dia="dia14">Día 14 - 29/03</a></li>
+            <li><a data-dia="dia15">Día 15 - 30/03</a></li>
+            <li><a data-dia="dia16">Día 16 - 31/03</a></li>
+            <li><a data-dia="dia17">Día 17 - 01/04</a></li>
+            <li><a data-dia="dia18">Día 18 - 02/04</a></li>
         </ul>
         <div id="contador"></div>
     </aside>
     <section class="panel panel-right">
-
+        <!-- Pestaña Resumen -->
         <div id="resumen" class="dia active">
+            <div class="seccion">
+                <h3>Resumen del viaje y alojamiento</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Visitas principales</th>
+                            <th>Alojamiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    <tr><td>Día 1</td><td>Llegada a Incheon, traslado al hotel</td><td>Incheon Airport Hotel</td></tr>
+    <tr><td>Día 2</td><td>Dotonbori, Kuromon Ichiba, Shinsaibashi</td><td>Osaka</td></tr>
+    <tr><td>Día 3</td><td>Castillo de Osaka, Umeda Sky, paseo Namba</td><td>Osaka</td></tr>
+    <tr><td>Día 4</td><td>Universal Studios Japan, CityWalk Osaka</td><td>Osaka</td></tr>
+    <tr><td>Día 5</td><td>Excursión a Nara: Todai-ji, Parque de los ciervos, Kasuga Taisha</td><td>Osaka</td></tr>
+    <tr><td>Día 6</td><td>To-ji, Sanjusangendo, Higashiyama, Kiyomizudera, Gion, Pontocho</td><td>Kyoto</td></tr>
+    <tr><td>Día 7</td><td>Fushimi Inari Taisha, Sannenzaka, Ninenzaka</td><td>Kyoto</td></tr>
+    <tr><td>Día 8</td><td>Kinkaku-ji, Ryoan-ji, Arashiyama, opcional monos Iwatayama</td><td>Kyoto</td></tr>
+    <tr><td>Día 9</td><td>Castillo Nijo, Ginkaku-ji, Sendero de la Filosofía, Mercado Nishiki</td><td>Kyoto</td></tr>
+    <tr><td>Día 10</td><td>Excursión a Himeji: Castillo y jardines</td><td>Kyoto</td></tr>
+    <tr><td>Día 11</td><td>Sanmachi Suji, casco antiguo, Hida beef</td><td>Takayama</td></tr>
+    <tr><td>Día 12</td><td>Aldeas gassho-zukuri (Shirakawa-go)</td><td>Takayama</td></tr>
+    <tr><td>Día 13</td><td>Jardín Kenrokuen, Castillo de Kanazawa, Higashi Chaya</td><td>Kanazawa</td></tr>
+    <tr><td>Día 14</td><td>Shibuya (cruce, Hachiko, Shibuya Sky), Shinjuku (Kabukicho, Omoide Yokocho)</td><td>Tokyo</td></tr>
+    <tr><td>Día 15</td><td>Asakusa, Ueno Park, Ameyoko Market, Akihabara</td><td>Tokyo</td></tr>
+    <tr><td>Día 16</td><td>Harajuku, Meiji Jingu, Omotesando, Shinjuku Gyoen, rascacielos</td><td>Tokyo</td></tr>
+    <tr><td>Día 17</td><td>Lago Kawaguchiko, Chureito Pagoda, onsen opcional</td><td>Tokyo</td></tr>
+    <tr><td>Día 18</td><td>Santuario Toshogu, Futarasan, Shinkyo Bridge, vuelo regreso</td><td>—</td></tr>
+</tbody>
+                </table>
+            </div>
+        </div>
+
+<!-- Día 1 -->
+<div id="dia1" class="dia">
     <div class="seccion">
-        <h3>Resumen del viaje y alojamiento</h3>
-        <table class="tabla-resumen">
-            <thead>
-                <tr>
-                    <th>Día</th>
-                    <th>Visitas</th>
-                    <th>Dormir</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Día 1</td><td>Llegada a Seúl (escala)</td><td>Hotel en Incheon</td></tr>
-                <tr><td>Día 2</td><td>Osaka: Dotonbori, Namba</td><td>Osaka</td></tr>
-                <tr><td>Día 3</td><td>Universal Studios Japan (USJ)</td><td>Osaka</td></tr>
-                <tr><td>Día 4</td><td>Hiroshima: Parque de la Paz, Museo Bomba Atómica</td><td>Hiroshima</td></tr>
-                <tr><td>Día 5</td><td>Miyajima: Torii flotante, santuario Itsukushima</td><td>Hiroshima</td></tr>
-                <tr><td>Día 6</td><td>Himeji / Kioto</td><td>Kioto</td></tr>
-                <tr><td>Día 7</td><td>Kioto Este: Kiyomizu-dera, Higashiyama, Gion</td><td>Kioto</td></tr>
-                <tr><td>Día 8</td><td>Kioto Oeste: Arashiyama, bosque de bambú, templos</td><td>Kioto</td></tr>
-                <tr><td>Día 9</td><td>Hakone: Lago Ashi, vistas Monte Fuji</td><td>Hakone</td></tr>
-                <tr><td>Día 10</td><td>Tokio: Asakusa, Senso-ji</td><td>Tokio</td></tr>
-                <tr><td>Día 11</td><td>Shibuya / Harajuku</td><td>Tokio</td></tr>
-                <tr><td>Día 12</td><td>Nikko</td><td>Tokio</td></tr>
-                <tr><td>Día 13</td><td>Ueno / Akihabara / Yanaka</td><td>Tokio</td></tr>
-                <tr><td>Día 14</td><td>Kamakura</td><td>Tokio</td></tr>
-                <tr><td>Día 15</td><td>Ginza / Roppongi / Odaiba</td><td>Tokio</td></tr>
-                <tr><td>Día 16</td><td>Shinjuku</td><td>Tokio</td></tr>
-                <tr><td>Día 17</td><td>Yokohama</td><td>Tokio</td></tr>
-                <tr><td>Día 18</td><td>Tokio libre / Nakameguro</td><td>Tokio</td></tr>
-            </tbody>
-        </table>
+        <h3>Día 1 — Llegada a Seúl</h3>
+        <p><strong>Llegada:</strong> 18:15 a Incheon.</p>
+        <p><strong>Transporte:</strong> Traslado al hotel del aeropuerto (autobús o tren AREX, ~1h)</p>
+        <p><strong>Alojamiento:</strong> Incheon Airport Hotel</p>
     </div>
 </div>
-                <!-- Día 1 -->
-        <div id="dia1" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Llegada a Seúl (Incheon) — noche de escala. Llegar, descansar y preparar el vuelo a Osaka.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Con escala corta y llegada a las 18:15 no compensa intentar entrar en Seúl: mejor descansar para el siguiente día.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Cena ligera en el Airport Mall o en el hotel del aeropuerto (Grand Hyatt Incheon o Incheon Airport Transit Hotel). Traslado por shuttle del aeropuerto al hotel.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Incheon+Airport&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
 
-        <!-- Día 2 -->
-        <div id="dia2" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Vuelo a Osaka, traslado al hotel y paseo por Dotonbori y Namba.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Conocer el ambiente nocturno de Osaka, probar comida local y ver el famoso cartel de Glico.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Usar Osaka Amazing Pass para transporte y algunas atracciones. Cena okonomiyaki o takoyaki en Dotonbori.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Dotonbori+Osaka&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 2 -->
+<div id="dia2" class="dia">
+    <div class="seccion">
+        <h3>Día 2 — Osaka: Dotonbori, Kuromon y Shinsaibashi</h3>
+        <p><strong>Transporte:</strong> Tren JR Kansai Airport → Namba (~45 min).</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Mercado Kuromon Ichiba: degustación de sushi, kushikatsu y marisco (2h)</li>
+            <li>Paseo por Dotonbori: canal, neones y comida callejera (2h)</li>
+            <li>Shinsaibashi Shopping Arcade: compras (1–2h)</li>
+        </ul>
+        <p><strong>Cena:</strong> takoyaki u okonomiyaki en Dotonbori</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
 
-        <!-- Día 3 -->
-        <div id="dia3" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Día completo en Universal Studios Japan (USJ), incluyendo zonas de Harry Potter y Minion Park.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Disfrutar de una experiencia temática única, que no se puede repetir en otros lugares del viaje.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos práctivos</h3>
-                <p>Llegar temprano, reservar Express Pass si se quiere evitar colas. Llevar snacks y agua.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Universal+Studios+Japan&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 3 -->
+<div id="dia3" class="dia">
+    <div class="seccion">
+        <h3>Día 3 — Osaka tradicional + Umeda Sky</h3>
+        <p><strong>Transporte:</strong> Metro para llegar al Castillo de Osaka (~30 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Castillo de Osaka y parque (2–3h)</li>
+            <li>Paseo por Umeda, subir al Umeda Sky Building al atardecer (1h)</li>
+        </ul>
+        <p><strong>Cena:</strong> Namba/Umeda</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
 
-        <!-- Día 4 -->
-        <div id="dia4" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Viaje a Hiroshima, visita al Parque de la Paz y Museo de la Bomba Atómica.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Conocer la historia de la ciudad y la importancia de la paz.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Comprar Hiroshima Peace Memorial Pass si vais a usar transporte público.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Hiroshima+Peace+Park&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 4 -->
+<div id="dia4" class="dia">
+    <div class="seccion">
+        <h3>Día 4 — Universal Studios Japan</h3>
+        <p><strong>Transporte:</strong> Tren JR Yumesaki Line → Universal-City Station (~15 min desde Namba)</p>
+        <p><strong>Actividades:</strong> Día completo en USJ: Harry Potter, Mario Kart, Jurassic Park, shows</p>
+        <p><strong>Cena:</strong> CityWalk Osaka</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
 
-        <!-- Día 5 -->
-        <div id="dia5" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Excursión a Miyajima para ver el torii flotante y el santuario Itsukushima.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Uno de los lugares más emblemáticos de Japón, patrimonio de la humanidad.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Subir al Monte Misen si hay tiempo y buen tiempo. Evitar multitudes saliendo temprano.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Miyajima&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 5 -->
+<div id="dia5" class="dia">
+    <div class="seccion">
+        <h3>Día 5 — Excursión a Nara</h3>
+        <p><strong>Transporte:</strong> JR Yamatoji Line Osaka → Nara (~40 min)</p>
+        <p><strong>Actividades:</strong> Todai-ji, Parque de los ciervos, Kasuga Taisha (6–7h), caminata entre templos (~10–15 min)</p>
+        <p><strong>Cena:</strong> regreso a Namba y Dotonbori</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
 
-        <!-- Día 6 -->
-        <div id="dia6" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Visita al Castillo de Himeji por la mañana, traslado a Kioto por la tarde.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Castillo de Himeji: joya histórica y arquitectónica, imprescindible antes de llegar a Kioto.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Llegar temprano para evitar colas y calor. En Kioto, paseo inicial por Gion si hay tiempo.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Himeji+Castle&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 6 -->
+<div id="dia6" class="dia">
+    <div class="seccion">
+        <h3>Día 6 — Osaka → Kioto</h3>
+        <p><strong>Transporte:</strong> Shinkansen Osaka → Kioto (~15 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>To-ji (1h)</li>
+            <li>Sanjusangendo (1h)</li>
+            <li>Paseo por Higashiyama y Kiyomizudera (2h)</li>
+            <li>Barrio Gion y Pontocho al atardecer (1h)</li>
+        </ul>
+        <p><strong>Cena:</strong> Gion/Pontocho</p>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
 
-        <!-- Día 7 -->
-        <div id="dia7" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Recorrido por Kioto Este: Kiyomizu-dera, Higashiyama y Gion.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Visitar templos históricos y disfrutar de las calles tradicionales de Kioto.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Ir temprano a Kiyomizu-dera. Pasear por las calles de Gion por la tarde para ver geishas.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Kiyomizu-dera&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 7 -->
+<div id="dia7" class="dia">
+    <div class="seccion">
+        <h3>Día 7 — Kioto Este</h3>
+        <p><strong>Transporte:</strong> Bus local → Fushimi Inari Taisha (~30 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Fushimi Inari Taisha (2h)</li>
+            <li>Sannenzaka y Ninenzaka (1h)</li>
+        </ul>
+        <p><strong>Cena:</strong> Gion</p>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
 
-        <!-- Día 8 -->
-        <div id="dia8" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Recorrido por Kioto Oeste: Arashiyama, bosque de bambú, templos Tenryu-ji y otros.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Zona más natural y tranquila de Kioto, ideal para contrastar con el este histórico.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Llegar temprano a Arashiyama. Subir al puente Togetsukyo y recorrer el bosque de bambú sin prisa.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Arashiyama&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 8 -->
+<div id="dia8" class="dia">
+    <div class="seccion">
+        <h3>Día 8 — Kioto Oeste</h3>
+        <p><strong>Transporte:</strong> Bus local → Kinkaku-ji (~30 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Kinkaku-ji y Ryoan-ji (2h)</li>
+            <li>Arashiyama: bosque de bambú, Tenryu-ji, puente Togetsukyo (3–4h)</li>
+            <li>Opcional: monos de Iwatayama (1h)</li>
+        </ul>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
 
-        <!-- Día 9 -->
-        <div id="dia9" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Traslado a Hakone, recorrido por el lago Ashi y vista del Monte Fuji.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Disfrutar de un paisaje natural icónico de Japón, vistas del monte Fuji y onsen.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Usar Hakone Free Pass, tomar barco por el lago Ashi y teleférico de Hakone. Preparar ropa para clima fresco.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Lake+Ashi+Hakone&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 9 -->
+<div id="dia9" class="dia">
+    <div class="seccion">
+        <h3>Día 9 — Kioto Norte y centro</h3>
+        <p><strong>Transporte:</strong> Bus/metro → Castillo Nijo (~15 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Castillo Nijo (1–1h30)</li>
+            <li>Ginkaku-ji + Sendero de la Filosofía (2–3h)</li>
+            <li>Mercado Nishiki (1h)</li>
+        </ul>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
 
-        <!-- Día 10 -->
-        <div id="dia10" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Llegada a Tokio, visita a Asakusa y templo Senso-ji.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Entrada a la capital de Japón, conocer la zona histórica y sus templos.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Pasear por Nakamise Street para souvenirs y snacks locales.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Asakusa+Tokyo&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 10 -->
+<div id="dia10" class="dia">
+    <div class="seccion">
+        <h3>Día 10 — Excursión a Himeji</h3>
+        <p><strong>Transporte:</strong> Shinkansen Kioto → Himeji (~1h)</p>
+        <p><strong>Actividades:</strong> Castillo de Himeji y jardines (2–3h)</p>
+        <p><strong>Regreso:</strong> Shinkansen Himeji → Kioto (~1h)</p>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
 
-        <!-- Día 11 -->
-        <div id="dia11" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Visita a Shibuya y Harajuku, incluyendo cruce de Shibuya y Takeshita Street.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Experimentar la moda juvenil y el ambiente más moderno de Tokio.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Pasear por Omotesando, probar crepes en Takeshita y fotos en Shibuya Crossing.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Shibuya+Tokyo&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 11 -->
+<div id="dia11" class="dia">
+    <div class="seccion">
+        <h3>Día 11 — Kioto → Takayama</h3>
+        <p><strong>Transporte:</strong> Tren JR Ltd. Express Hida (~3h30)</p>
+        <p><strong>Actividades:</strong> Paseo por Sanmachi Suji, casco antiguo (2–3h)</p>
+        <p><strong>Cena:</strong> Hida beef</p>
+        <p><strong>Alojamiento recomendado:</strong> Hodakaso Yamanoiori / Oyado Koto No Yume / Best Western Takayama</p>
+    </div>
+</div>
 
-        <!-- Día 12 -->
-        <div id="dia12" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Excursión a Nikko: santuario Toshogu y naturaleza de la zona.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Visita a patrimonio de la humanidad, arquitectura única y bosque tranquilo.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Llevar calzado cómodo, madrugar y prever transporte con Nikko Pass.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Nikko+Japan&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 12 -->
+<div id="dia12" class="dia">
+    <div class="seccion">
+        <h3>Día 12 — Shirakawa-go</h3>
+        <p><strong>Transporte:</strong> Bus Takayama → Shirakawa-go (~50 min)</p>
+        <p><strong>Actividades:</strong> Aldeas gassho-zukuri (2–3h)</p>
+        <p><strong>Regreso:</strong> Bus Shirakawa-go → Takayama (~50 min)</p>
+        <p><strong>Alojamiento recomendado:</strong> Hodakaso Yamanoiori / Oyado Koto No Yume / Best Western Takayama</p>
+    </div>
+</div>
 
-        <!-- Día 13 -->
-        <div id="dia13" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Recorrido por Ueno, Akihabara y Yanaka.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Combinación de cultura, compras y zonas tradicionales de Tokio.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Visitar mercado Ameyoko, pasear por Yanaka y explorar tiendas electrónicas de Akihabara.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Ueno+Tokyo&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 13 -->
+<div id="dia13" class="dia">
+    <div class="seccion">
+        <h3>Día 13 — Takayama → Kanazawa</h3>
+        <p><strong>Transporte:</strong> Tren Takayama → Kanazawa (~2h)</p>
+        <p><strong>Actividades:</strong> Jardín Kenrokuen, Castillo de Kanazawa, Higashi Chaya (3–4h)</p>
+        <p><strong>Alojamiento recomendado:</strong> Tmark City Hotel Kanazawa / Kanazawa Tokyu Hotel / Hotel Mystays Kanazawa</p>
+    </div>
+</div>
 
-        <!-- Día 14 -->
-        <div id="dia14" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Excursión a Kamakura: Gran Buda, templos y playa.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Visita cultural y natural cerca de Tokio.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Llegar temprano al Gran Buda, pasear por templos y disfrutar del entorno costero.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Kamakura+Japan&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 14 -->
+<div id="dia14" class="dia">
+    <div class="seccion">
+        <h3>Día 14 — Kanazawa → Tokio</h3>
+        <p><strong>Transporte:</strong> Shinkansen Kanazawa → Tokio (~2h30)</p>
+        <p><strong>Actividades:</strong> Tarde en Shibuya (cruce, Hachiko, Shibuya Sky), noche en Shinjuku (Kabukicho, Omoide Yokocho)</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
 
-        <!-- Día 15 -->
-        <div id="dia15" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Recorrido por Ginza, Roppongi y Odaiba.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Experimentar compras de lujo, arte moderno y vistas futuristas de Tokio.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Subir a miradores, pasear por Odaiba y disfrutar de la iluminación nocturna.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Ginza+Tokyo&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 15 -->
+<div id="dia15" class="dia">
+    <div class="seccion">
+        <h3>Día 15 — Tokio tradicional</h3>
+        <p><strong>Transporte:</strong> Metro/tren local</p>
+        <p><strong>Actividades:</strong> Asakusa (Senso-ji + Nakamise) 2h, Ueno Park + Ameyoko Market 2h, Akihabara 2h</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
 
-        <!-- Día 16 -->
-        <div id="dia16" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Día en Shinjuku: rascacielos, jardines, compras y vida nocturna.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Explorar uno de los barrios más vibrantes de Tokio.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos práctos</h3>
-                <p>Subir al mirador del Gobierno Metropolitano, pasear por Kabukicho y Golden Gai por la noche.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Shinjuku+Tokyo&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 16 -->
+<div id="dia16" class="dia">
+    <div class="seccion">
+        <h3>Día 16 — Tokio moderno</h3>
+        <p><strong>Transporte:</strong> Metro/caminata</p>
+        <p><strong>Actividades:</strong> Harajuku (Takeshita Street) 1h, Meiji Jingu 1h, Omotesando 1h, Shinjuku Gyoen + rascacielos 2–3h</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
 
-        <!-- Día 17 -->
-        <div id="dia17" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Visita a Yokohama: Chinatown, Minato Mirai y paseo por la bahía.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Experimentar ciudad portuaria cercana a Tokio y su arquitectura moderna.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Pasear por Cosmo Clock 21, disfrutar de ramen en Chinatown y caminar por Minato Mirai.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Yokohama+Japan&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 17 -->
+<div id="dia17" class="dia">
+    <div class="seccion">
+        <h3>Día 17 — Excursión Monte Fuji (Kawaguchiko)</h3>
+        <p><strong>Transporte:</strong> Tren JR Chuo Line + bus local (~2h desde Shinjuku)</p>
+        <p><strong>Actividades:</strong> Lago Kawaguchiko, paseo y vistas del Fuji (2h), Chureito Pagoda (1h), opcional onsen con vistas al volcán (1h)</p>
+        <p><strong>Regreso:</strong> Tren/bus a Tokio (~2h)</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
 
-        <!-- Día 18 -->
-        <div id="dia18" class="dia">
-            <div class="seccion">
-                <h3>Qué haréis</h3>
-                <p>Día libre en Tokio, paseo por Nakameguro y compras finales.</p>
-            </div>
-            <div class="seccion">
-                <h3>Por qué</h3>
-                <p>Último día para disfrutar de Tokio y zonas menos turísticas, relax y souvenirs.</p>
-            </div>
-            <div class="seccion">
-                <h3>Consejos prácticos</h3>
-                <p>Pasear por Nakameguro, ver el canal y tiendas locales, y preparar equipaje para salida.</p>
-            </div>
-            <div class="seccion">
-                <iframe src="https://www.google.com/maps?q=Nakameguro+Tokyo&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+<!-- Día 18 -->
+<div id="dia18" class="dia">
+    <div class="seccion">
+        <h3>Día 18 — Excursión a Nikko y regreso</h3>
+        <p><strong>Transporte:</strong> Shinkansen + tren local desde Tokio (~2h cada trayecto)</p>
+        <p><strong>Actividades:</strong> Santuario Toshogu, Futarasan, Shinkyo Bridge (4–5h)</p>
+        <p><strong>Regreso:</strong> Tren a Tokio (~2h) y vuelo Tokio → Seúl → Madrid (salida 02:00)</p>
+        <p><strong>Alojamiento:</strong> —</p>
+    </div>
+</div>
 
     </section>
 </div>
+
 <script>
-// Toggle modo oscuro
+// Toggle modo oscuro con cambio de emoji
 const toggle = document.getElementById("toggleDark");
 toggle.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
+    toggle.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
 });
 
 // Modo oscuro automático según hora
 const hora = new Date().getHours();
 if(hora >= 20 || hora < 7){
     document.documentElement.classList.add("dark");
+    toggle.textContent = "☀️";
+} else {
+    toggle.textContent = "🌙";
 }
 
 // Selector de días
@@ -683,6 +574,8 @@ setInterval(actualizarContador, 1000 * 60 * 60);
 </script>
 </body>
 </html>
+
+
 
 
 
