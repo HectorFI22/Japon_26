@@ -276,27 +276,27 @@ tbody tr:last-child td:last-child {
    Móvil
    ========================= */
 @media (max-width: 600px) {
-    #menuToggle {
-        display: block;
-    }
 
-    .panel-left {
-        position: fixed;
-        top: 60px; /* justo debajo del header */
-        left: -100%; /* oculto fuera de la vista */
-        width: 80%; /* ocupa la mayor parte del ancho */
-        height: calc(100% - 70px); /* altura menos header y margen */
-        transition: left 0.3s ease;
-        z-index: 1000;
-    }
+.panel-left {
+  position: fixed;
+  top: 0;                     /* lo cambiamos a 0 para controlar la altura con padding interno */
+  left: -100%;                 /* oculto fuera de la vista */
+  width: 80%;                  /* ancho del menú */
+  height: 100%;                /* ocupa toda la altura del viewport */
+  z-index: 1000;               /* por encima del panel derecho */
+  transition: left 0.3s ease;
+  padding-top: 60px;           /* deja espacio para el header */
+  box-sizing: border-box;
+}
 
-    .panel-left.open {
-        left: 10px; /* un poco de margen a la izquierda */
-    }
+.panel-left.open {
+  left: 0;                     /* se despliega desde la izquierda */
+}
 
-    .panel-right {
-        width: 100%;
-    }
+.panel-right {
+  margin-left: 0;
+  width: 100%;                 /* siempre ocupa todo el ancho */
+}
 }
 </style>
 </head>
@@ -392,6 +392,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
