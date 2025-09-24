@@ -273,59 +273,23 @@ tbody tr:last-child td:last-child {
  
 @media (max-width: 600px) {
 
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 65px;
-        z-index: 120;
-        background: #fff;
-    }
+.panel-left {
+  position: fixed;
+  top: 60px;              /* justo debajo del header */
+  left: -100%;            /* oculto fuera de la vista */
+  width: 100%;            /* ocupa todo el ancho al abrirse */
+  height: calc(100% - 60px); /* altura menos el header */
+  z-index: 1000;          /* por encima del panel derecho */
+  transition: left 0.3s ease;
+}
 
-    #menuToggle {
-        display: block;
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        z-index: 130;
-        cursor: pointer;
-    }
+.panel-left.open {
+  left: 0;                /* se despliega desde la izquierda */
+}
 
-    .main-container {
-        display: flex;
-        flex-direction: row;
-        padding-top: 65px; /* deja hueco para el header */
-        height: calc(100vh - 65px);
-        width: 100%;
-        overflow: hidden;
-    }
-
-    /* Panel izquierdo: oculto por defecto */
-    .panel-left {
-        width: 0;
-        overflow: hidden;
-        transition: width 0.3s ease;
-        background: #fff;
-        height: 100%;
-    }
-
-    /* Panel derecho ocupa todo por defecto */
-    .panel-right {
-        width: 100%;
-        height: 100%;
-        transition: width 0.3s ease;
-        overflow-y: auto;
-    }
-
-    /* Cuando se abre el menú */
-    .main-container.menu-open .panel-left {
-        width: 35%; /* ancho panel izquierdo */
-    }
-
-    .main-container.menu-open .panel-right {
-        width: 65%; /* ancho panel derecho */
-    }
+.panel-right {
+  margin-left: 0;
+  width: 100%;            /* siempre ocupa todo el ancho */
 }
  
 </style>
@@ -687,6 +651,7 @@ menuToggle.addEventListener("click", () => {
 </script>
 </body>
 </html>
+
 
 
 
