@@ -277,25 +277,28 @@ tbody tr:last-child td:last-child {
    ========================= */
 @media (max-width: 600px) {
 
+#menuToggle {
+    display: block;
+}
+
 .panel-left {
   position: fixed;
-  top: 0;                     /* lo cambiamos a 0 para controlar la altura con padding interno */
-  left: -100%;                 /* oculto fuera de la vista */
-  width: 80%;                  /* ancho del menú */
-  height: 100%;                /* ocupa toda la altura del viewport */
-  z-index: 1000;               /* por encima del panel derecho */
+  top: 0; /* se ajusta con JS */
+  left: -100%; 
+  width: 80%; 
+  height: 100%; /* se ajusta con JS */
+  z-index: 1000;
   transition: left 0.3s ease;
-  padding-top: 60px;           /* deja espacio para el header */
   box-sizing: border-box;
 }
 
 .panel-left.open {
-  left: 0;                     /* se despliega desde la izquierda */
+  left: 0; 
 }
 
 .panel-right {
   margin-left: 0;
-  width: 100%;                 /* siempre ocupa todo el ancho */
+  width: 100%;
 }
 }
 </style>
@@ -361,7 +364,8 @@ links.forEach(link => {
     link.addEventListener('click', () => {
         const diaId = link.getAttribute('data-dia');
         dias.forEach(d => d.classList.remove('active'));
-        document.getElementById(diaId).classList.add('active');
+        const target = document.getElementById(diaId);
+        if(target) target.classList.add('active');
         links.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
@@ -389,9 +393,22 @@ const panelLeft = document.querySelector(".panel-left");
 menuToggle.addEventListener("click", () => {
     panelLeft.classList.toggle("open");
 });
+
+// Ajuste de altura del menú móvil
+function ajustarAlturaMenu() {
+    const header = document.querySelector('header');
+    const panel = document.querySelector('.panel-left');
+    const alturaHeader = header.offsetHeight;
+    panel.style.top = alturaHeader + 'px';
+    panel.style.height = `calc(100% - ${alturaHeader}px)`;
+}
+window.addEventListener('resize', ajustarAlturaMenu);
+window.addEventListener('load', ajustarAlturaMenu);
 </script>
 </body>
 </html>
+
+
 
 
 
