@@ -6,25 +6,22 @@
 <meta charset="UTF-8">
 <link rel="apple-touch-icon" href="icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Viaje a Japón 2026</title>
 <style>
 /* =========================
    Estilos generales
    ========================= */
-
-/* Transiciones suaves */
 * {
-    transition: background-color 0.01s, color 0.01s;
+    transition: background-color 0.2s, color 0.2s;
 }
-
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: sans-serif;
-    overflow: hidden; /* scroll solo en paneles */
 }
-
 body {
     display: flex;
     flex-direction: column;
@@ -35,45 +32,35 @@ header {
     background-color: #bc0000;
     color: white;
     text-align: center;
-    padding: 5px 15px;
+    padding: 10px 20px;
     font-weight: bold;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    position: relative;
     flex-shrink: 0;
-    margin: 10px;
-    z-index: 50;
+    margin: 10px 20px;
+    position: relative; /* para el botón */
 }
+.header-jp { font-size: 2rem; font-weight: 900; margin-bottom: 2px; }
+.header-title { font-size: 1rem; font-weight: bold; }
 
-.header-jp {
-    font-size: 2rem;
-    font-weight: 900;
-    margin-bottom: 2px;
-}
-
-.header-title {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-/* Botones */
-#toggleDark, #menuToggle {
+/* Botón modo oscuro en la esquina superior derecha */
+#toggleDark {
     position: absolute;
     top: 10px;
-    font-size: 1.2rem;
+    right: 10px;
     border: none;
-    background: transparent;
+    background: white;
+    color: #bc0000;
+    font-size: 1.2rem;
     cursor: pointer;
-    z-index: 60;
-}
-
-#toggleDark {
-    right: 20px;
-}
-
-#menuToggle {
-    left: 20px;
-    display: none;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Contenedor principal */
@@ -81,8 +68,9 @@ header {
     flex: 1;
     display: flex;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 20px;
     min-height: 0;
+    box-sizing: border-box;
 }
 
 /* Paneles */
@@ -92,141 +80,155 @@ header {
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     padding: 15px;
     overflow-y: auto;
-    position: relative;
 }
 
-/* Scroll personalizado */
-.panel::-webkit-scrollbar {
-    width: 10px;
-}
+/* Panel izquierdo y derecho */
+.panel-left { width: 25%; display: flex; flex-direction: column; justify-content: space-between; }
+.panel-right { width: 75%; overflow-x: hidden; }
 
-.panel::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 10px;
-}
-
-.panel::-webkit-scrollbar-thumb {
-    background-color: #bc0000;
-    border-radius: 10px;
-    border: 2px solid #f0f0f0;
-}
-
-.dark .panel::-webkit-scrollbar-track {
-    background: #2d3748;
-}
-
-.dark .panel::-webkit-scrollbar-thumb {
-    background-color: #ff4d4d;
-    border: 2px solid #2d3748;
-}
-
-/* Panel izquierdo */
-.panel-left {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, width 0.3s ease, margin-left 0.3s ease;
-    z-index: 20;
-}
-
-/* Panel derecho */
-.panel-right {
-    width: 75%;
-    transition: margin-left 0.3s ease, width 0.3s ease;
-    overflow-x: hidden;
-}
-
-/* Menú */
-#menuDias {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-#menuDias li {
-    margin-bottom: 8px;
-}
-
+/* Lista de días */
+#menuDias { list-style: none; padding: 0; text-align: center; margin: 0; }
 #menuDias li a {
     display: block;
-    padding: 8px;
+    padding: 10px 5px;
     color: #bc0000;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.05rem;
     border-radius: 5px;
     cursor: pointer;
 }
-
-#menuDias li a.active,
-#menuDias li a:hover {
-    background-color: #f2f2f2;
-}
+#menuDias li a.active { background-color: #f2f2f2; }
 
 /* Contador */
-#contador {
-    text-align: center;
-    font-size: 0.9rem;
-    font-weight: normal;
-    margin-top: 10px;
-}
+#contador { text-align: center; font-size: 0.9rem; font-weight: normal; margin-top: 10px; }
 
-/* Secciones día */
-.seccion {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
-.dark .seccion {
-    background-color: #374151;
-}
-
-/* Días */
-.dia {
-    display: none;
-}
-
-.dia.active {
-    display: block;
-}
+/* Secciones de días */
+.dia { display: none; margin-bottom: 20px; padding: 10px; border-radius: 10px; background-color: #f9f9f9; }
+.dia.active { display: block; }
 
 /* Modo oscuro */
-.dark body,
-.dark .panel {
-    background-color: #1f2937;
-    color: #f3f4f6;
+.dark body, .dark .panel { background-color: #1f2937; color: #f3f4f6; }
+.dark .panel-left { color: #ffffff; }
+.dark #menuDias li a { color: #d1d5db; }
+.dark #menuDias li a.active { background-color: #4b5563; color: #f3f4f6; }
+.dark .dia { background-color: #374151; }
+.dark header { background-color: #bc0000; }
+.dark #toggleDark { background: #4b5563; color: #f3f4f6; }
+
+/* =========================
+   Selector móvil oculto en escritorio
+   ========================= */
+#mobileSelector { display: none; }
+
+/* =========================
+   Móvil
+   ========================= */
+@media (max-width: 600px) {
+    /* Encabezado más compacto con margen superior */
+    header {
+        font-size: 0.9rem;
+        padding-top: 15px;
+        margin-top: 20px; /* gap respecto a la parte superior */
+    }
+    .header-jp { font-size: 1.5rem; }
+    .header-title { font-size: 0.9rem; }
+
+    header {
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 15px;
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+    }
+
+    .main-container {
+        flex-direction: column;
+        padding: 0;
+        height: calc(100vh - 80px);
+        min-height: 0;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .panel-left, .panel-right {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: calc(100% - 40px);
+        height: calc(100% - 20px);
+        margin: 0 20px;
+        display: none;
+        flex-direction: column;
+        border-radius: 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        background-color: white;   
+    }
+
+    .panel-left.active, .panel-right.active {
+        display: flex;
+    }
+
+    /* Selector móvil con indicador deslizante */
+    #mobileSelector {
+        display: flex;
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: white;
+        border-radius: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        z-index: 100;
+        overflow: hidden;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    #mobileSelector button {
+        flex: 1;
+        padding: 10px 25px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Indicador ovalado deslizante */
+    #mobileIndicator {
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        left: 5px;
+        width: calc(50% - 10px);
+        background-color: #bc0000;
+        border-radius: 20px;
+        transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1;
+    }
+
+    /* Color del texto del botón activo */
+    #mobileSelector button.active { color: white; }
 }
 
-.dark .panel-left {
-    color: #ffffff;
-}
-
-.dark #menuDias li a {
-    color: #d1d5db;
-}
-
-.dark #menuDias li a.active,
-.dark #menuDias li a:hover {
-    background-color: #4b5563;
-    color: #f3f4f6;
-}
-
-.dark header {
-    background-color: #bc0000;
-}
-
+/* Scroll personalizado */
+.panel::-webkit-scrollbar { width: 10px; }
+.panel::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; }
+.panel::-webkit-scrollbar-thumb { background-color: #bc0000; border-radius: 10px; border: 2px solid #f0f0f0; }
+.dark .panel::-webkit-scrollbar-track { background: #2d3748; }
+.dark .panel::-webkit-scrollbar-thumb { background-color: #ff4d4d; border: 2px solid #2d3748; }
 /* Tabla resumen estilo moderno */
 table {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
+    width: 90%;
+margin: 0 auto; 
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    table-layout: auto;
 }
 
 thead tr {
@@ -236,9 +238,9 @@ thead tr {
 }
 
 td, th {
-    padding: 8px;
-    word-break: break-word;
-    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+text-align: center;
 }
 
 tbody tr:nth-child(even) {
@@ -257,63 +259,38 @@ tbody tr:nth-child(even) {
 .dark tbody tr:nth-child(even) {
     background-color: #374151;
 }
+@media (min-width: 1024px) { 
+    /* Panel derecho */
+    .panel-right {
+        font-size: 24px;
+    }
 
-thead tr th:first-child {
-    border-top-left-radius: 15px;
-}
-thead tr th:last-child {
-    border-top-right-radius: 15px;
-}
+    /* Panel izquierdo: aplicamos a los links del menú */
+    .panel-left,
+    .panel-left ul#menuDias,
+    .panel-left ul#menuDias li a {
+        font-size: 24px;
+    }
 
-tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 15px;
-}
-tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
-} 
-
-/* =========================
-   Móvil
-   ========================= */
-@media (max-width: 600px) {
-
-#menuToggle {
-    display: block;
+    /* Tabla resumen */
+    table {
+        font-size: 24px;
+    }
 }
 
-.panel-left {
-  position: fixed;
-  top: 0; /* se ajusta con JS */
-  left: -100%; 
-  width: 80%; 
-  height: 100%; /* se ajusta con JS */
-  z-index: 1000;
-  transition: left 0.3s ease;
-  box-sizing: border-box;
-}
-
-.panel-left.open {
-  left: 0; 
-}
-
-.panel-right {
-  margin-left: 0;
-  width: 100%;
-}
-}
 </style>
 </head>
 <body>
 <header>
-    <button id="menuToggle">☰</button>
+    <button id="toggleDark">🌙</button>
     <h1 class="header-jp">日本への旅行</h1>
     <p class="header-title">Viaje a Japón</p>
-    <button id="toggleDark">🌙</button>
 </header>
+
 <div class="main-container">
-    <aside class="panel panel-left">
+    <aside class="panel panel-left active" id="panelDias">
         <ul id="menuDias">
-            <li><a data-dia="resumen" class="active">Resumen</a></li>
+           <li><a data-dia="resumen" class="active">Resumen</a></li>
             <li><a data-dia="dia1">Día 1 - 16/03</a></li>
             <li><a data-dia="dia2">Día 2 - 17/03</a></li>
             <li><a data-dia="dia3">Día 3 - 18/03</a></li>
@@ -332,51 +309,289 @@ tbody tr:last-child td:last-child {
             <li><a data-dia="dia16">Día 16 - 31/03</a></li>
             <li><a data-dia="dia17">Día 17 - 01/04</a></li>
             <li><a data-dia="dia18">Día 18 - 02/04</a></li>
+<li><a data-dia=" "></a></li>
+<li><a data-dia=" "></a></li>
+<li><a data-dia=" "></a></li>
+<li><a data-dia=" "></a></li>
         </ul>
-        <div id="contador"></div>
+        <div id="contador">Faltan X días para Japón</div>
     </aside>
-    <section class="panel panel-right">
-        <!-- Aquí van tus días y contenido tal como lo tienes ahora -->
+
+    <section class="panel panel-right active" id="panelRuta">
+<!-- Pestaña Resumen -->
+        <div id="resumen" class="dia active">
+            <div class="seccion">
+                <h3>Resumen del viaje y alojamiento</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Visitas principales</th>
+                            <th>Alojamiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    <tr><td>1</td><td>Llegada a Incheon, traslado al hotel</td><td>Incheon Airport Hotel</td></tr>
+    <tr><td>2</td><td>Dotonbori, Kuromon Ichiba, Shinsaibashi</td><td>Osaka</td></tr>
+    <tr><td>3</td><td>Castillo de Osaka, Umeda Sky, paseo Namba</td><td>Osaka</td></tr>
+    <tr><td>4</td><td>Universal Studios Japan, CityWalk Osaka</td><td>Osaka</td></tr>
+    <tr><td>5</td><td>Excursión a Nara: Todai-ji, Parque de los ciervos, Kasuga Taisha</td><td>Osaka</td></tr>
+    <tr><td>6</td><td>To-ji, Sanjusangendo, Higashiyama, Kiyomizudera, Gion, Pontocho</td><td>Kyoto</td></tr>
+    <tr><td>7</td><td>Fushimi Inari Taisha, Sannenzaka, Ninenzaka</td><td>Kyoto</td></tr>
+    <tr><td>8</td><td>Kinkaku-ji, Ryoan-ji, Arashiyama, opcional monos Iwatayama</td><td>Kyoto</td></tr>
+    <tr><td>9</td><td>Castillo Nijo, Ginkaku-ji, Sendero de la Filosofía, Mercado Nishiki</td><td>Kyoto</td></tr>
+    <tr><td>10</td><td>Excursión a Himeji: Castillo y jardines</td><td>Kyoto</td></tr>
+    <tr><td>11</td><td>Sanmachi Suji, casco antiguo, Hida beef</td><td>Takayama</td></tr>
+    <tr><td>12</td><td>Aldeas gassho-zukuri (Shirakawa-go)</td><td>Takayama</td></tr>
+    <tr><td>13</td><td>Jardín Kenrokuen, Castillo de Kanazawa, Higashi Chaya</td><td>Kanazawa</td></tr>
+    <tr><td>14</td><td>Shibuya (cruce, Hachiko, Shibuya Sky), Shinjuku (Kabukicho, Omoide Yokocho)</td><td>Tokyo</td></tr>
+    <tr><td>15</td><td>Asakusa, Ueno Park, Ameyoko Market, Akihabara</td><td>Tokyo</td></tr>
+    <tr><td>16</td><td>Harajuku, Meiji Jingu, Omotesando, Shinjuku Gyoen, rascacielos</td><td>Tokyo</td></tr>
+    <tr><td>17</td><td>Lago Kawaguchiko, Chureito Pagoda, onsen opcional</td><td>Tokyo</td></tr>
+    <tr><td>18</td><td>Santuario Toshogu, Futarasan, Shinkyo Bridge, vuelo regreso</td><td>—</td></tr>
+</tbody>
+                </table>
+            </div>
+        </div>
+
+<!-- Día 1 -->
+<div id="dia1" class="dia">
+    <div class="seccion">
+        <h3>Día 1 — Llegada a Seúl</h3>
+        <p><strong>Llegada:</strong> 18:15 a Incheon.</p>
+        <p><strong>Transporte:</strong> Traslado al hotel del aeropuerto (autobús o tren AREX, ~1h)</p>
+        <p><strong>Alojamiento:</strong> Incheon Airport Hotel</p>
+    </div>
+</div>
+
+<!-- Día 2 -->
+<div id="dia2" class="dia">
+    <div class="seccion">
+        <h3>Día 2 — Osaka: Dotonbori, Kuromon y Shinsaibashi</h3>
+        <p><strong>Transporte:</strong> Tren JR Kansai Airport → Namba (~45 min).</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Mercado Kuromon Ichiba: degustación de sushi, kushikatsu y marisco (2h)</li>
+            <li>Paseo por Dotonbori: canal, neones y comida callejera (2h)</li>
+            <li>Shinsaibashi Shopping Arcade: compras (1–2h)</li>
+        </ul>
+        <p><strong>Cena:</strong> takoyaki u okonomiyaki en Dotonbori</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
+
+<!-- Día 3 -->
+<div id="dia3" class="dia">
+    <div class="seccion">
+        <h3>Día 3 — Osaka tradicional + Umeda Sky</h3>
+        <p><strong>Transporte:</strong> Metro para llegar al Castillo de Osaka (~30 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Castillo de Osaka y parque (2–3h)</li>
+            <li>Paseo por Umeda, subir al Umeda Sky Building al atardecer (1h)</li>
+        </ul>
+        <p><strong>Cena:</strong> Namba/Umeda</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
+
+<!-- Día 4 -->
+<div id="dia4" class="dia">
+    <div class="seccion">
+        <h3>Día 4 — Universal Studios Japan</h3>
+        <p><strong>Transporte:</strong> Tren JR Yumesaki Line → Universal-City Station (~15 min desde Namba)</p>
+        <p><strong>Actividades:</strong> Día completo en USJ: Harry Potter, Mario Kart, Jurassic Park, shows</p>
+        <p><strong>Cena:</strong> CityWalk Osaka</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
+
+<!-- Día 5 -->
+<div id="dia5" class="dia">
+    <div class="seccion">
+        <h3>Día 5 — Excursión a Nara</h3>
+        <p><strong>Transporte:</strong> JR Yamatoji Line Osaka → Nara (~40 min)</p>
+        <p><strong>Actividades:</strong> Todai-ji, Parque de los ciervos, Kasuga Taisha (6–7h), caminata entre templos (~10–15 min)</p>
+        <p><strong>Cena:</strong> regreso a Namba y Dotonbori</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Nikko Osaka / Cross Hotel Osaka / Hotel Monterey Grasmere Osaka</p>
+    </div>
+</div>
+
+<!-- Día 6 -->
+<div id="dia6" class="dia">
+    <div class="seccion">
+        <h3>Día 6 — Osaka → Kioto</h3>
+        <p><strong>Transporte:</strong> Shinkansen Osaka → Kioto (~15 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>To-ji (1h)</li>
+            <li>Sanjusangendo (1h)</li>
+            <li>Paseo por Higashiyama y Kiyomizudera (2h)</li>
+            <li>Barrio Gion y Pontocho al atardecer (1h)</li>
+        </ul>
+        <p><strong>Cena:</strong> Gion/Pontocho</p>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
+
+<!-- Día 7 -->
+<div id="dia7" class="dia">
+    <div class="seccion">
+        <h3>Día 7 — Kioto Este</h3>
+        <p><strong>Transporte:</strong> Bus local → Fushimi Inari Taisha (~30 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Fushimi Inari Taisha (2h)</li>
+            <li>Sannenzaka y Ninenzaka (1h)</li>
+        </ul>
+        <p><strong>Cena:</strong> Gion</p>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
+
+<!-- Día 8 -->
+<div id="dia8" class="dia">
+    <div class="seccion">
+        <h3>Día 8 — Kioto Oeste</h3>
+        <p><strong>Transporte:</strong> Bus local → Kinkaku-ji (~30 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Kinkaku-ji y Ryoan-ji (2h)</li>
+            <li>Arashiyama: bosque de bambú, Tenryu-ji, puente Togetsukyo (3–4h)</li>
+            <li>Opcional: monos de Iwatayama (1h)</li>
+        </ul>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
+
+<!-- Día 9 -->
+<div id="dia9" class="dia">
+    <div class="seccion">
+        <h3>Día 9 — Kioto Norte y centro</h3>
+        <p><strong>Transporte:</strong> Bus/metro → Castillo Nijo (~15 min)</p>
+        <p><strong>Actividades:</strong></p>
+        <ul>
+            <li>Castillo Nijo (1–1h30)</li>
+            <li>Ginkaku-ji + Sendero de la Filosofía (2–3h)</li>
+            <li>Mercado Nishiki (1h)</li>
+        </ul>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
+
+<!-- Día 10 -->
+<div id="dia10" class="dia">
+    <div class="seccion">
+        <h3>Día 10 — Excursión a Himeji</h3>
+        <p><strong>Transporte:</strong> Shinkansen Kioto → Himeji (~1h)</p>
+        <p><strong>Actividades:</strong> Castillo de Himeji y jardines (2–3h)</p>
+        <p><strong>Regreso:</strong> Shinkansen Himeji → Kioto (~1h)</p>
+        <p><strong>Alojamiento recomendado:</strong> The Royal Park Canvas Kyoto Nijo / Hotel Gracery Kyoto Sanjo / Sakura Terrace</p>
+    </div>
+</div>
+
+<!-- Día 11 -->
+<div id="dia11" class="dia">
+    <div class="seccion">
+        <h3>Día 11 — Kioto → Takayama</h3>
+        <p><strong>Transporte:</strong> Tren JR Ltd. Express Hida (~3h30)</p>
+        <p><strong>Actividades:</strong> Paseo por Sanmachi Suji, casco antiguo (2–3h)</p>
+        <p><strong>Cena:</strong> Hida beef</p>
+        <p><strong>Alojamiento recomendado:</strong> Hodakaso Yamanoiori / Oyado Koto No Yume / Best Western Takayama</p>
+    </div>
+</div>
+
+<!-- Día 12 -->
+<div id="dia12" class="dia">
+    <div class="seccion">
+        <h3>Día 12 — Shirakawa-go</h3>
+        <p><strong>Transporte:</strong> Bus Takayama → Shirakawa-go (~50 min)</p>
+        <p><strong>Actividades:</strong> Aldeas gassho-zukuri (2–3h)</p>
+        <p><strong>Regreso:</strong> Bus Shirakawa-go → Takayama (~50 min)</p>
+        <p><strong>Alojamiento recomendado:</strong> Hodakaso Yamanoiori / Oyado Koto No Yume / Best Western Takayama</p>
+    </div>
+</div>
+
+<!-- Día 13 -->
+<div id="dia13" class="dia">
+    <div class="seccion">
+        <h3>Día 13 — Takayama → Kanazawa</h3>
+        <p><strong>Transporte:</strong> Tren Takayama → Kanazawa (~2h)</p>
+        <p><strong>Actividades:</strong> Jardín Kenrokuen, Castillo de Kanazawa, Higashi Chaya (3–4h)</p>
+        <p><strong>Alojamiento recomendado:</strong> Tmark City Hotel Kanazawa / Kanazawa Tokyu Hotel / Hotel Mystays Kanazawa</p>
+    </div>
+</div>
+
+<!-- Día 14 -->
+<div id="dia14" class="dia">
+    <div class="seccion">
+        <h3>Día 14 — Kanazawa → Tokio</h3>
+        <p><strong>Transporte:</strong> Shinkansen Kanazawa → Tokio (~2h30)</p>
+        <p><strong>Actividades:</strong> Tarde en Shibuya (cruce, Hachiko, Shibuya Sky), noche en Shinjuku (Kabukicho, Omoide Yokocho)</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
+
+<!-- Día 15 -->
+<div id="dia15" class="dia">
+    <div class="seccion">
+        <h3>Día 15 — Tokio tradicional</h3>
+        <p><strong>Transporte:</strong> Metro/tren local</p>
+        <p><strong>Actividades:</strong> Asakusa (Senso-ji + Nakamise) 2h, Ueno Park + Ameyoko Market 2h, Akihabara 2h</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
+
+<!-- Día 16 -->
+<div id="dia16" class="dia">
+    <div class="seccion">
+        <h3>Día 16 — Tokio moderno</h3>
+        <p><strong>Transporte:</strong> Metro/caminata</p>
+        <p><strong>Actividades:</strong> Harajuku (Takeshita Street) 1h, Meiji Jingu 1h, Omotesando 1h, Shinjuku Gyoen + rascacielos 2–3h</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
+
+<!-- Día 17 -->
+<div id="dia17" class="dia">
+    <div class="seccion">
+        <h3>Día 17 — Excursión Monte Fuji (Kawaguchiko)</h3>
+        <p><strong>Transporte:</strong> Tren JR Chuo Line + bus local (~2h desde Shinjuku)</p>
+        <p><strong>Actividades:</strong> Lago Kawaguchiko, paseo y vistas del Fuji (2h), Chureito Pagoda (1h), opcional onsen con vistas al volcán (1h)</p>
+        <p><strong>Regreso:</strong> Tren/bus a Tokio (~2h)</p>
+        <p><strong>Alojamiento recomendado:</strong> Hotel Sunroute Plaza Shinjuku / Shinjuku Granbell Hotel / Hotel Gracery Shinjuku</p>
+    </div>
+</div>
+
+<!-- Día 18 -->
+<div id="dia18" class="dia">
+    <div class="seccion">
+        <h3>Día 18 — Excursión a Nikko y regreso</h3>
+        <p><strong>Transporte:</strong> Shinkansen + tren local desde Tokio (~2h cada trayecto)</p>
+        <p><strong>Actividades:</strong> Santuario Toshogu, Futarasan, Shinkyo Bridge (4–5h)</p>
+        <p><strong>Regreso:</strong> Tren a Tokio (~2h) y vuelo Tokio → Seúl → Madrid (salida 02:00)</p>
+        <p><strong>Alojamiento:</strong> —</p>
+    </div>
+</div>
+
     </section>
+</div>
+<!-- Selector móvil -->
+<div id="mobileSelector">
+    <div id="mobileIndicator"></div>
+    <button id="btnDias" class="active">Días</button>
+    <button id="btnRuta">Ruta</button>
 </div>
 
 <script>
-// Toggle modo oscuro
+// Modo oscuro
 const toggle = document.getElementById("toggleDark");
 toggle.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
     toggle.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
 });
 
-// Modo oscuro automático según hora
-const hora = new Date().getHours();
-if(hora >= 20 || hora < 7){
-    document.documentElement.classList.add("dark");
-    toggle.textContent = "☀️";
-} else {
-    toggle.textContent = "🌙";
-}
-
-// Selector de días
-const links = document.querySelectorAll('#menuDias a');
-const dias = document.querySelectorAll('.dia');
-links.forEach(link => {
-    link.addEventListener('click', () => {
-        const diaId = link.getAttribute('data-dia');
-        dias.forEach(d => d.classList.remove('active'));
-        const target = document.getElementById(diaId);
-        if(target) target.classList.add('active');
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-
-        // Cierra el menú al seleccionar un día en móvil
-        if(window.innerWidth <= 600){
-            document.querySelector('.panel-left').classList.remove('open');
-        }
-    });
-});
-
-// Contador de días
+// Contador
 const fechaViaje = new Date('2026-03-16');
 function actualizarContador() {
     const hoy = new Date();
@@ -387,44 +602,47 @@ function actualizarContador() {
 actualizarContador();
 setInterval(actualizarContador, 1000 * 60 * 60);
 
-// Toggle menú hamburguesa
-const menuToggle = document.getElementById("menuToggle");
-const panelLeft = document.querySelector(".panel-left");
-menuToggle.addEventListener("click", () => {
-    panelLeft.classList.toggle("open");
+// Selector días/ruta móvil
+const btnDias = document.getElementById('btnDias');
+const btnRuta = document.getElementById('btnRuta');
+const panelDias = document.getElementById('panelDias');
+const panelRuta = document.getElementById('panelRuta');
+const mobileIndicator = document.getElementById('mobileIndicator');
+
+function moverIndicador(index) {
+    mobileIndicator.style.left = `calc(${index * 50}% + 5px)`;
+}
+
+btnDias.addEventListener('click', () => {
+    btnDias.classList.add('active');
+    btnRuta.classList.remove('active');
+    panelDias.classList.add('active');
+    panelRuta.classList.remove('active');
+    moverIndicador(0);
+});
+btnRuta.addEventListener('click', () => {
+    btnRuta.classList.add('active');
+    btnDias.classList.remove('active');
+    panelRuta.classList.add('active');
+    panelDias.classList.remove('active');
+    moverIndicador(1);
 });
 
-// Ajuste de altura del menú móvil
-function ajustarAlturaMenu() {
-    const header = document.querySelector('header');
-    const panel = document.querySelector('.panel-left');
-    const alturaHeader = header.offsetHeight;
-    panel.style.top = alturaHeader + 'px';
-    panel.style.height = `calc(100% - ${alturaHeader}px)`;
-}
-window.addEventListener('resize', ajustarAlturaMenu);
-window.addEventListener('load', ajustarAlturaMenu);
+// Al pinchar un día
+const links = document.querySelectorAll('#menuDias a');
+links.forEach(link => {
+    link.addEventListener('click', () => {
+        const diaId = link.getAttribute('data-dia');
+        document.querySelectorAll('.dia').forEach(d => d.classList.remove('active'));
+        document.getElementById(diaId).classList.add('active');
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        if(window.innerWidth <= 600) btnRuta.click();
+    });
+});
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
