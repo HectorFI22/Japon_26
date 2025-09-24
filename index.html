@@ -277,6 +277,22 @@ tbody tr:nth-child(even) {
         font-size: 24px;
     }
 }
+header #contador {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+}
+.dark header #contador {
+    color: #f3f4f6;
+}
+@media (max-width: 600px) {
+    #mobileSelector {
+        bottom: 20px; /* antes estaba 60px */
+    }
+}
+
 
 </style>
 </head>
@@ -285,6 +301,7 @@ tbody tr:nth-child(even) {
     <button id="toggleDark">🌙</button>
     <h1 class="header-jp">日本への旅行</h1>
     <p class="header-title">Viaje a Japón</p>
+<div id="contador">Faltan X días</div>
 </header>
 
 <div class="main-container">
@@ -311,10 +328,9 @@ tbody tr:nth-child(even) {
             <li><a data-dia="dia18">Día 18 - 02/04</a></li>
 <li><a data-dia=" "></a></li>
 <li><a data-dia=" "></a></li>
-<li><a data-dia=" "></a></li>
-<li><a data-dia=" "></a></li>
+
+
         </ul>
-        <div id="contador">Faltan X días para Japón</div>
     </aside>
 
     <section class="panel panel-right active" id="panelRuta">
@@ -597,7 +613,7 @@ function actualizarContador() {
     const hoy = new Date();
     const diffTime = fechaViaje - hoy;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    document.getElementById('contador').textContent = diffDays > 0 ? `Faltan ${diffDays} días para Japón` : "¡Ya estás en Japón!";
+    document.getElementById('contador').textContent = diffDays > 0 ? `Faltan ${diffDays} días` : "¡Ya estás en Japón!";
 }
 actualizarContador();
 setInterval(actualizarContador, 1000 * 60 * 60);
@@ -641,8 +657,10 @@ links.forEach(link => {
     });
 });
 </script>
+
 </body>
 </html>
+
 
 
 
